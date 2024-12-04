@@ -2532,7 +2532,7 @@
 	rotortimevariance(float) : "Time variance" : "0.3" : "The random amount to vary the time it has to be under the rotor before it shoots a gib."
 ]
 
-@PointClass base(Targetname, Parentname, Angles) iconsprite("editor/env_shooter.vmt") = env_break_shooter : 
+@PointClass base(gibshooterbase, RenderFields) iconsprite("editor/env_shooter.vmt") = env_break_shooter : 
 	"An entity that shoots func_breakable gibs."
 [
 
