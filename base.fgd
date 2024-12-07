@@ -4698,7 +4698,7 @@
 		256 : "[256] Start with collision disabled" : 0
 		512: "[512] NPCs Can't" : 0
 		2048: "[2048] Starts locked" : 0
-		4096: "[4096] Door silent (No sound, and does not alert NPCs)" : 0
+		4096: "[4096] Door silent (No sound, does not alert NPCs)" : 0
 		8192: "[8192] Use closes" : 1
 		16384 : "[16384] Door silent to NPCS (Does not alert NPCs)" : 0
 		32768 : "[32768] Ignore player +USE" : 0
@@ -7309,7 +7309,7 @@
 
 	spawnflags(Flags) =
 	[
-		1 : "[1] Use target entity's angles (NOT position)" : 0
+		1 : "[1] Use target entity's angles (NOT position. Checks if entities face the same direction)" : 0
 	]
 	
 	// Inputs
@@ -7842,9 +7842,9 @@
 		// starts on by default
 		1: "[1] Start On" : 1
 		// Disable world collisions on hinges
-		2: "[2] No world collision" : 0
+		2: "[2] No world collision (If Hinge Object was set, make Attached Object not collide with world brushes)" : 0
 		// motor also acts as a hinge constraining the object to this axis
-		4: "[4] Hinge Object" : 1
+		4: "[4] Hinge Object (Makes the object 'attached' to the motor. If not set, will move around freely)" : 1
 		// Maintain local relationship with the attached object (NOT WORKING YET)
 //		8: "[8] Orient Locally" : 1
 	]
@@ -8749,6 +8749,8 @@
 	input EnablePath(void) : "Enable the track."
 	input DisablePath(void) : "Disable the track."
 
+	input InPass(void) : "Fires OnPass. Normally the path follower entity sends this to the path node when it reaches that point."
+	input InTeleport(void) : "Fires OnTeleport. Normally the path follower entity sends this to the path node when it teleports to it."
 	// Outputs
 	output OnPass(void) : "Fired when any entity following this path passes this path_track node."
 	output OnTeleport(void)  : "Fired when any entity following this path teleports directly to this path_track node."
