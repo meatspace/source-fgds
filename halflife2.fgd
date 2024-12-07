@@ -4172,7 +4172,7 @@
 		1 : "[1] Use Master's values (Use settings from a resupply with Is Master checked)" : 1
 		2 : "[2] Is Master (resupplys with Use Master's values checked will use settings from this entity)" : 0
 		4 : "[4] Always Spawn (Spawn something even if the player doesn't need anything)" : 0
-		8 : "[8]Fallback to Health Vial (If Always Spawn checked & the player doesn't need anything, spawns an item_healthvial)" : 0
+		8 : "[8] Fallback to Health Vial (If Always Spawn checked & the player doesn't need anything, spawns an item_healthvial)" : 0
 		16 : "[16] Alternate master (Stop doing PVS check so it can be used by supply crates or become the master later on)" : 0
 	]
 
