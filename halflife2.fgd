@@ -239,6 +239,8 @@
 [
 	output OnBallReinserted(void) : "Fired when a combine ball is reinserted into the field (only gets triggered when Combine Power supply is checked)"
 	output OnLastBallGrabbed(void) : "Fired when the last combine ball is grabbed from the field by a mega physcannon"
+
+	input Destroy(void) : "Releases all balls from the spawner as if they were punted out by the gravity gun."
 ]
 
 @PointClass base(CombineBallSpawners, Parentname) = point_combine_ball_launcher :
@@ -4176,7 +4178,7 @@
 [
 	spawnflags(Flags) =
 	[
-		1 : "[1] Use Master's values (Use settings from a resupply with Is Master checked)" : 1
+		1 : "[1] Use Master's values (Use settings from a resupply with 'Is Master' checked)" : 1
 		2 : "[2] Is Master (resupplys with Use Master's values checked will use settings from this entity)" : 0
 		4 : "[4] Always Spawn (Spawn something even if the player doesn't need anything)" : 0
 		8 : "[8] Fallback to Health Vial (If Always Spawn checked & the player doesn't need anything, spawns an item_healthvial)" : 0
@@ -4795,13 +4797,13 @@
 	soundcontext(choices) : "Additional sound context (optional)" : 0 : "Optional settings specifying such things as who can or cannot hear the sound." =
 	[
 		0 : "Select one"
-		1048576 : "From Sniper (react ai_sound, not Location Proxy. Use with Danger. Allies speak TLK_DANGER concepts, take cover.)"
+		1048576 : "From Sniper (React ai_sound, not Location Proxy. Use with Danger. Allys speak TLK_DANGER concepts & take cover)"
 		2097152 : "Gunfire (Use with combat sound type, Alerts Alyx)"
 		4194304 : "Mortar (Allies avoid pending explosion)"
 		8388608 : "Only Combine can hear (But does not always alert)"
 		67108864 : "Combine cannot can hear"
-		16777216 : "React to source (face sound owner)"
-		33554432 : "Explosion (use with combat sound type. Picked up by env_microphone. Alyx may flinch.)"
+		16777216 : "React to source (Face sound owner)"
+		33554432 : "Explosion (Use with combat sound type. Picked up by env_microphone. Alyx may flinch.)"
 		134217728 : "Danger approach (run if see sound owner, turn to face if not)"
 		268435456 : "Only allies can hear"
 		536870912 : "Player vehicle (Hunters will prepare to dodge)"
