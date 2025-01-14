@@ -8536,10 +8536,11 @@
 [
 	spawnflags(flags) =
 	[
-		1 : "[1] No Pitch (X-rot)" : 0
+		1 : "[1] No Pitch (X-rot, pitch never changes as it moves)" : 0
 		2 : "[2] No User Control" : 0
+		4 : "[4] Forward Only (The controlling player may only move the entity forward, or stop it.)" : 0
 		8 : "[8] Passable" : 0
-		16 : "[16] Fixed Orientation" : 0
+		16 : "[16] Fixed Orientation (Brush stays in the orientation it was created in)" : 0
 		128 : "[128] Rideable Train (HL1 Train)" : 0
 		256 : "[256] Use max speed for pitch shifting move sound" : 0
 		512 : "[512] Is unblockable by player" : 0
@@ -8688,6 +8689,7 @@
 		16: "[16] Teleport to THIS path track" : 0
 		32: "[32] Part of an uphill path" : 0
 		64: "[64] Part of a downhill path" : 0
+		32768 : "[32768] Start on Branch (Sends trains to Branch Path by default.)" : 0
 	]
 	
 	target(target_destination) : "Next Stop Target" : : "The next path_track in the path."
