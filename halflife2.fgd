@@ -395,6 +395,7 @@
 	output OnDeploy(void) : "Turret is becoming active and dangerous."
 	output OnRetire(void) : "Turret is becoming inactive and harmless."
 	output OnTipped(void) : "Turret has been tipped over and is inactive."
+	output OnStartTipped(void) : "Turret has just been tipped over."
 	output OnPhysGunPickup(void) : "Picked up with physgun"
 	output OnPhysGunDrop(void) : "Released by physgun"
 ]
@@ -1414,6 +1415,7 @@
 		0 : "Normal headcrabs"
 		1 : "Fast Headcrabs"
 		2 : "Poison Headcrabs"
+		-1 : "Random"
 	]
 	HeadcrabCount(integer) : "Headcrab count" : 6 : "Number of headcrabs to spawn on impact"
 	FlightSpeed(float) : "Flight Speed" : 3000  : "Speed to fly through the air"
@@ -1872,9 +1874,13 @@
 		1 : "Yes"
 	]
 
+	MeleeReach(float) : "Melee Reach" : 55 : "The maximum distance in which this zombie should be able to swat at enemies."
+	MaxDistToSwat(float) : "Max Distance to Swat Props" : 1000 : "The maximum distance in which this zombie should be able to swat props at enemies."
+	MaxObjMassToSwat(integer) : "Max Object Mass to Swat" : 60 : "The maximum mass this zombie should consider when choosing props to swat."
 	spawnflags(Flags) = 
 	[
 		32768 :  "[32768] Never turn into a torso" : 0
+		65536 :  "[65536] Never release headcrab" : 0
 	]
 
 	output OnSwattedProp(ehandle) : "Fires when this NPC swats a prop, passing the prop as the activator and parameter."
@@ -2512,6 +2518,7 @@
 	input BeginSequence(void) : "Summons an NPC to act out the scripted sequence."
 	input MoveToPosition(void) : "Summons an NPC to the script location. They will play their scripted idle (or ACT_IDLE if none is specified) until BeginSequence is triggered."
 	input CancelSequence(void) : "Stops the scripted sequence. If fired after a sequence starts, this input will not take effect until the NPC finishes playing the scripted action animation."
+	input StopActionLoop(void) : "Stops looping the action animation if it is specified to loop."
 	input SetTarget(target_destination) : "Sets the target NPC."
 	input ScriptPlayerDeath(void) : "Pretends that the player died."		//added by vizzys
 
