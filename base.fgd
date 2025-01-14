@@ -1309,8 +1309,6 @@
 		0 : "Advisor Stun (Pulsating sideways blur)"
 		1 : "Intro Blur (Radial blur with trailing effects)"
 		2 : "Groggy Vision (Blurry objects, white screen)"
-		100 : "Chromatic Blur (Mapbase)"
-		101 : "Chromatic Aberration (Mapbase)"
 	]
 
 	// Inputs
@@ -3062,7 +3060,6 @@
 		0 : "No"
 		1 : "Yes"
 	]
-
 	spotlightlength(integer) : "Spotlight Length" : 500 : "Length of the spotlight beam."
 	spotlightwidth(integer) : "Spotlight Width" : 50 : "Width of the spotlight beam."
 	rendercolor(color255) : "Color (R G B)" : "255 255 255"
@@ -8261,8 +8258,6 @@
 		32768 : "[32768] Allow stretch" : 0
 		65536 : "[65536] Start asleep" : 0
 		131072 : "[131072] Fixed constraints (make statue)" : 0
-		262144 : "[262144] Allow +USE" : 0
-		524288 : "[524288] Prevent pickup (if +USE is enabled)" : 0
 	]
 	angleOverride(string) : "Override Animation" : "" : "Filled in by the engine via wc_update_entity, do not edit by hand except to clear."
 
@@ -8272,10 +8267,6 @@
 	input EnableMotion(void) : "Enable physics motion/collision response."
 	input DisableMotion(void) : "Disable physics motion/collision response."
 	input FadeAndRemove(float) : "Fade out then remove (kill) self. Parameter override = duration of fade"
-	input AddToLRU(void) : "Adds the ragdoll to the cleanup list (ragdoll will fade out when it's the least recently used)"
-	input RemoveFromLRU(void) : "Removes the ragdoll from the cleanup list, allowing it to exist indefinitely"
-
-	output OnPlayerUse(void) : "Fires when the ragdoll is used, if +USE is enabled."
 	
 	input SetCycle(float) : "Skip to a specific point in the CURRENT animation. Needs to be set AFTER setting the animation and starting playback." //added by vizzys
 	input SetModel(string) : "Changes the model to the specified path. Form of models/ammo/ammo_us.mdl. Absolutely NO quotes. Make sure you use forward slash." //added by vizzys
