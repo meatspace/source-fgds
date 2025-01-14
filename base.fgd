@@ -1,4 +1,4 @@
-//====== Copyright © 1996-2005, Valve Corporation, All rights reserved. =======
+//====== Copyright Â© 1996-2005, Valve Corporation, All rights reserved. =======
 //
 // Purpose: General game definition file (.fgd) 
 //
@@ -5017,7 +5017,7 @@
 	input SetFModRate(float) : "Set the modulation cycles per second from -10.0f to 10.0."
 	input SetFModAmplitude(float) : "Set the modulation extents from 0.0f to 10.0."
 	input RandomizeFMod(float) : "Randomize the frequency modulation by an extremeness of 0.0 to 1.0."
-	input GetFMod(float) : "Outputs the current modulation settings in console."
+	input GetFMod(void) : "Outputs the current modulation settings in console."
 ]
 
 @PointClass base(Targetname) iconsprite("editor/logic_compare.vmt") = logic_compare :
