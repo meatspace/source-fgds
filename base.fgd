@@ -1645,7 +1645,7 @@
 	_minlight(string) : "Minimum Light Level" : : "The minimum level of ambient light that hits this brush."
 ]
 
-@SolidClass base(Targetname, EnableDisable) = func_clip_vphysics : 
+@SolidClass base(Targetname, Parentname, EnableDisable) = func_clip_vphysics : 
 	"A brush entity that's considered solid to vphysics." 
 [
 	filtername(filterclass) : "Filter Name" : : "Filter to use to see if activator collides with me. See filter_activator_name for more explanation. Allow means 'Allow to Block' for this entity."
@@ -5292,6 +5292,7 @@
 	Group13(target_destination) : "EntityGroup[13]"
 	Group14(target_destination) : "EntityGroup[14]"
 	Group15(target_destination) : "EntityGroup[15]"
+	rendercolor(color255) : "Sprite Icon Color" : "255 255 255" : "Helper color to differentiate your script icons. Only works in Hammer++."
 ]
 
 @PointClass base(Targetname) iconsprite("editor/logic_script_client.vmt") = logic_script_client : "An entity capable of running client-side scripts"

@@ -397,6 +397,7 @@
 	output OnDeploy(void) : "Turret is becoming active and dangerous."
 	output OnRetire(void) : "Turret is becoming inactive and harmless."
 	output OnTipped(void) : "Turret has been tipped over and is inactive."
+	output OnStartTipped(void) : "Turret has just been tipped over."
 	output OnPhysGunPickup(void) : "Picked up with physgun"
 	output OnPhysGunDrop(void) : "Released by physgun"
 ]
@@ -4406,7 +4407,7 @@
 	input HideWeapon(void) : "If the weapon is being held by someone, makes it invisible. The weapon will reappear if they switch weapons." // added by vizzys
 	
 	// Outputs
-	output OnPlayerUse(void) : "Fires when the player +uses this weapon"
+	output OnPlayerUse(void) : "Fires when the player +USEs this weapon"
 	output OnPlayerPickup(void) : "Fires when the player picks up this weapon"
 	output OnNPCPickup(void) : "Fires when an NPC picks up this weapon"
 	output OnCacheInteraction(void) : "Fires when the player 'proves' they've found this weapon. Fires on: Player Touch, +USE pickup, Physcannon pickup, Physcannon punt."
