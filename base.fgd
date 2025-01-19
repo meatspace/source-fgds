@@ -151,8 +151,8 @@
 	input SetLocalVelocity(vector) : "Sets this entity's current velocity."
 	input SetLocalAngularVelocity(vector) : "Sets this entity's current angular velocity."
 	
-	input AddSpawnFlags(integer) : "Adds spawnflag(s) to this entity. Many spawnflags have their respective numbers suffixed in this FGD."
-	input RemoveSpawnFlags(integer) : "Removes spawnflag(s) from this entity. Many spawnflags have their respective numbers suffixed in this FGD."
+	input AddSpawnFlags(integer) : "Adds spawnflag(s) to this entity. Many spawnflags have their respective numbers prefixed in this FGD."
+	input RemoveSpawnFlags(integer) : "Removes spawnflag(s) from this entity. Many spawnflags have their respective numbers prefixed in this FGD."
 	
 	input AddSolidFlags(integer) : "Adds solid flags to this entity."
 	input RemoveSolidFlags(integer) : "Removes solid flags from this entity."
@@ -1847,7 +1847,7 @@
 	life(string) : "Life (seconds 0 = infinite)" : "1" : "Amount of time before the beam dies. Setting to zero will make the beam stay forever."
 	BoltWidth(float) : "Width of beam" : 2 : "Pixel width of the beam."
 	NoiseAmplitude(float) : "Amount of noise (0-255)" : 0 : "The amount of noise in the beam. 0 is a perfectly straight beam."
-	texture(sprite) : "Sprite Name" : "sprites/laserbeam.spr" : "The material used to draw the beam."
+	texture(sprite) : "Sprite Name" : "sprites/laserbeam.vmt" : "The material used to draw the beam."
 	TextureScroll(integer) : "Texture Scroll Rate (0-100)" : 35 : "Rate at which the beam texture should scroll along the beam."
 	framerate(integer) : "Frames per 10 seconds" : 0 : "Framerate at which the beam texture should animate, if it has multiple frames."
 	framestart(integer) : "Starting Frame" : 0 : "The frame to start the beam texture on."
@@ -2014,7 +2014,7 @@
 	// If no radius override, magnitude will determine radius.
 	iRadiusOverride(Integer) : "Radius Override" : 0 : "If specified, the radius in which the explosion damages entities. If unspecified, the radius will be based on the magnitude."
 	DamageForce(float) : "Damage Force" : 0 : "Overrides push force. BUG: Very obvious disparity between force applied to players and force applied to physics objects." //added by vizzys
-	fireballsprite(sprite) : "Fireball Sprite" : "sprites/zerogxplode.spr"
+	fireballsprite(sprite) : "Fireball Sprite" : "sprites/zerogxplode.vmt"
 	rendermode(choices) : "Render Mode" : 5 =
 	[
 		0: "Normal"
@@ -2064,8 +2064,8 @@
 	endsize(float) : "Ending particle size" : "50" : "Ending particle size."
 	spawnradius(float) : "Spawn radius" : "15" : "Distance from env_smoketrail at which particles are emitted."
 
-	firesprite(sprite) : "Fire Sprite" : "sprites/firetrail.spr"
-	smokesprite(sprite) : "Smoke Puff" : "sprites/whitepuff.spr"
+	firesprite(sprite) : "Fire Sprite" : "sprites/firetrail.vmt"
+	smokesprite(sprite) : "Smoke Puff" : "sprites/whitepuff.vmt"
 ]
 
 @PointClass base(Targetname, Parentname) sphere(radius) sphere(inner_radius) sphere(radius) iconsprite("editor/env_physexplosion.vmt") = env_physexplosion : 
@@ -2332,7 +2332,7 @@
 	rendercolor(color255) : "Beam Color (R G B)" : "255 255 255"
 	width(float) : "Width of Beam" : 2 : "The width of the laser beam, in pixels."
 	NoiseAmplitude(integer) : "Amount of noise (0-255)" : 0 : "The amount of noise in the beam. 0 is a perfectly straight beam."
-	texture(sprite) : "Sprite Name" : "sprites/laserbeam.spr" : "The material used to draw the laser beam."
+	texture(sprite) : "Sprite Name" : "sprites/laserbeam.vmt" : "The material used to draw the laser beam."
 	EndSprite(sprite) : "End Sprite" : "" : "If specified, this sprite will be drawn at the end of the laser beam."
 	TextureScroll(integer) : "Texture Scroll Rate (0-100)" : 35 : "Rate at which the beam texture should scroll along the beam."
 	framestart(integer) : "Starting Frame" : 0 : "The frame to start the beam texture on."
@@ -2577,7 +2577,17 @@
 	input SetGibFlags(integer) : "Sets the flags for each gib."
 ]
 
-@PointClass base(Targetname,Parentname) sphere(radius) iconsprite("editor/env_soundscape.vmt") = env_soundscape_proxy : 
+@PointClass base(Targetname,Parentname) sphere(radius) iconsprite("editor/env_soundscape.vmt")
+	line(255 255 255, targetname, MainSoundscapeName) 
+	line(128 128 128, targetname, position0) 
+	line(128 128 128, targetname, position1) 
+	line(128 128 128, targetname, position2) 
+	line(128 128 128, targetname, position3) 
+	line(128 128 128, targetname, position4) 
+	line(128 128 128, targetname, position5) 
+	line(128 128 128, targetname, position6) 
+	line(128 128 128, targetname, position7)
+	= env_soundscape_proxy : 
 	"An entity that acts like a soundscape but gets all of its sound parameters from another env_soundscape entity."
 [
 	MainSoundscapeName(target_destination) : "Soundscape Entity" : "" : "The soundscape to get all sound parameters from."
@@ -2659,7 +2669,7 @@
 	"An entity that controls the drawing of a sprite in the world." 
 [
 	framerate(string) : "Framerate" : "10.0" : "Rate at which the sprite should animate, if at all."
-	model(sprite) : "Sprite Name" : "sprites/glow01.spr" : "Material of the sprite to be drawn."
+	model(sprite) : "Sprite Name" : "sprites/glow01.vmt" : "Material of the sprite to be drawn."
 	scale(string) : "Scale" : "0.25" : "Scale multiplier of the sprite."
 	spawnflags(flags) =
 	[
@@ -2685,7 +2695,7 @@
     "A env_sprite that allows orientation."
 [
 	framerate(string) : "Framerate" : "10.0" : "Rate at which the sprite should animate, if at all."
-	model(sprite) : "Sprite Name" : "sprites/glow01.spr" : "Material of the sprite to be drawn."
+	model(sprite) : "Sprite Name" : "sprites/glow01.vmt" : "Material of the sprite to be drawn."
 	scale(string) : "Scale" : "" : "Scale multiplier of the sprite."
 	spawnflags(flags) =
 	[
@@ -4210,7 +4220,7 @@
 	input SetSlack(integer) : "Set the rope's slack. (Wind may need to be enabled for changes to apply)"
 	input SetWidth(float) : "Set the rope's width."
 	input SetSubdivision(integer) : "Set the rope's subdivision. (Wind may need to be enabled for changes to apply)"
-	input Break(void) : "Break the rope, if it's marked to do so."
+	input Break(void) : "Detach this end of the rope, causing it to fall."
 	
 	// Outputs
 	output OnBreak(void) : "Fires when this rope breaks."
@@ -8926,7 +8936,7 @@
 
 	spawnflags(flags) = 
 	[ 
-		128: "[128] Once Only" : 0
+		128: "[128] Trigger Once Only" : 0
 		256: "[256] Affects Ladders (Half-Life 2)" : 0 
 	]
 
@@ -9679,7 +9689,7 @@
 	input SetRefractRenderTarget(string) : "Sets the refraction render target."
 ]
 
-@SolidClass base(func_brush) = func_fake_worldportal :
+@SolidClass base(func_brush) line(255 255 0, targetname, target) line(255 255 255, targetname, FogController) = func_fake_worldportal :
 	"Used to produce perfectly reflective glass that renders world + entities. " +
 	"Typically, you want your glass brush to have nodraw on all non-reflective surfaces " +
 	"and you want to use a shader like lightmappedreflective in your material applied " +
