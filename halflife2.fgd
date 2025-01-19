@@ -4196,7 +4196,7 @@
 	DesiredAmmoBuckshot(float) : "Desired Shotgun Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
 	DesiredAmmoRPG_Round(float) : "Desired RPG Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
 	DesiredAmmoGrenade(float) : "Desired Grenade Ammo Ratio" : "0.1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmo357(float) : "Desired 357 Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
+	DesiredAmmo357(float) : "Desired .357 Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
 	DesiredAmmoCrossbow(float) : "Desired Crossbow Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
 	DesiredAmmoAR2_AltFire(float) : "Desired AR2 Alt-fire Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
 
@@ -4211,8 +4211,8 @@
 @PointClass base(ItemAmmo) studio("models/items/BoxMRounds.mdl")= item_ammo_smg1_large : "Large Box of SMG1 ammo" []
 @PointClass base(ItemAmmo) studio("models/items/combine_rifle_cartridge01.mdl")= item_ammo_ar2 : "Box of AR2 ammo" []
 @PointClass base(ItemAmmo) studio("models/items/combine_rifle_cartridge01.mdl")= item_ammo_ar2_large : "Large Box of AR2 ammo" []
-@PointClass base(ItemAmmo) studio("models/items/357ammo.mdl")= item_ammo_357 : "Box of 357 ammo" []
-@PointClass base(ItemAmmo) studio("models/items/357ammobox.mdl")= item_ammo_357_large : "Large Box of 357 ammo" []
+@PointClass base(ItemAmmo) studio("models/items/357ammo.mdl")= item_ammo_357 : "Box of .357 ammo" []
+@PointClass base(ItemAmmo) studio("models/items/357ammobox.mdl")= item_ammo_357_large : "Large Box of .357 ammo" []
 @PointClass base(ItemAmmo) studio("models/items/CrossbowRounds.mdl")= item_ammo_crossbow : "Box of Crossbow ammo" []
 @PointClass base(ItemAmmo) studio("models/items/BoxBuckshot.mdl")= item_box_buckshot : "Box Buckshot" []
 @PointClass base(ItemAmmo) studio("models/weapons/w_missile_closed.mdl")= item_rpg_round : "RPG Round" []
@@ -4422,15 +4422,15 @@
 @PointClass base(Weapon) studio("models/weapons/w_crowbar.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_crowbar : "Crowbar" []
 @PointClass base(Weapon) studio("models/weapons/w_stunbaton.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_stunstick : "StunStick" []
 @PointClass base(Weapon) studio("models/weapons/w_pistol.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_pistol : "Pistol" []
-@PointClass base(Weapon) studio("models/weapons/w_irifle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_ar2 : "Assault Rifle 2" []
-@PointClass base(Weapon) studio("models/weapons/w_rocket_launcher.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_rpg : "Missile Launcher" []
+@PointClass base(Weapon) studio("models/weapons/w_irifle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_ar2 : "Pulse Rifle" []
+@PointClass base(Weapon) studio("models/weapons/w_rocket_launcher.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_rpg : "Rocket Launcher" []
 @PointClass base(Weapon) studio("models/weapons/w_smg1.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_smg1 : "SMG1" []
-@PointClass base(Weapon) studio("models/weapons/w_357.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_357 : "357" []
+@PointClass base(Weapon) studio("models/weapons/w_357.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_357 : ".357 Magnum" []
 @PointClass base(Weapon) studio("models/weapons/w_crossbow.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_crossbow : "Crossbow" []
 @PointClass base(Weapon) studio("models/weapons/w_shotgun.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_shotgun : "Shotgun" []
 @PointClass base(Weapon) studio("models/weapons/w_grenade.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_frag : "Frag Grenade" []
-@PointClass base(Weapon) studio("models/weapons/w_physics.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_physcannon : "Physics Cannon" []
-@PointClass base(Weapon) studio("models/weapons/w_bugbait.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_bugbait: "Bug bait" []
+@PointClass base(Weapon) studio("models/weapons/w_physics.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_physcannon : "Gravity Gun" []
+@PointClass base(Weapon) studio("models/weapons/w_bugbait.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_bugbait: "Bugbait" []
 @PointClass base(Weapon) studio("models/weapons/W_Alyx_Gun.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_alyxgun: "Alyx Gun" []
 @PointClass base(Weapon) studio("models/weapons/W_annabelle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_annabelle: "Annabelle (Grigori)" []
 @PointClass base(Weapon) studio("models/weapons/w_slam.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_slam: "A tripmine/satchel hybrid from HL2:MP.\n\nCome on and slam, and welcome to the jam!\nCome on and slam, if you wanna jam!" []
