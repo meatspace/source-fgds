@@ -1055,7 +1055,7 @@
 	output OnFollowOrder(void) : "Fires when ordered to follow player"
 	output OnStationOrder(void) : "Fires when ordered to a location by player"
 	output OnPlayerUse(void) : "Fires when a player +USEs the citizen"
-	output OnNavFailBlocked(void) : "Fires when this citizen's movement fails because he/she is blocked."
+	output OnNavFailBlocked(void) : "Fires when this citizen's movement fails because they are blocked."
 	
 	output OnHealedNPC(void) : "Fires when this citizen heals a NPC."
 	output OnHealedPlayer(void) : "Fires when this citizen heals a player."
@@ -1537,10 +1537,10 @@
 	input DisableMinigun(void) : "Disables the minigun until further notice by the EnableMinigun input."
 	input EnableMinigun(void) : "Enables the minigun if it was disabled by the DisableMinigun input."
 	input SetCannonTarget(target_destination) : "Strider will shoot cannon at this"
-	input FlickRagdoll(void) : "Strider will flick anyone he's skewered"
+	input FlickRagdoll(void) : "Strider will flick anyone it's skewered"
 
 	input StartPatrol(void) : "Start patrolling back and forth along the current track."
-	input StopPatrol(void) : "Stop patrolling back and forth along the track. This will cause the helicopter to come to rest at the track which he's currently flying toward."
+	input StopPatrol(void) : "Stop patrolling back and forth along the track. This will cause the helicopter to come to rest at the track which it's currently flying toward."
 	input ChooseFarthestPathPoint(void) : "When tracking an enemy, choose the point on the path furthest from the enemy, but still in firing range"
 	input ChooseNearestPathPoint(void) : "When tracking an enemy, choose the point on the path nearest from the enemy"
 	input Crouch(void) : "Crouch down"
@@ -1771,8 +1771,8 @@
 	]
 
 	InitialSpeed(string) : "Initial Speed" : "0"
-	GracePeriod(float) : "Grace Period" : "2.0" : "Time in seconds the helicopter has to see the player before he starts shooting"
-	PatrolSpeed(float) : "Patrol Speed" : "0" : "Speed at which the helicopter moves if he has no enemy."
+	GracePeriod(float) : "Grace Period" : "2.0" : "Time in seconds the helicopter has to see the player before it starts shooting"
+	PatrolSpeed(float) : "Patrol Speed" : "0" : "Speed at which the helicopter moves if it has no enemy."
 	
 	FieldOfView(float) : "Field of View" : "-1.0" : "The helicopter's viewcone. (1.0 = straight ahead, 0.0 = +/- 90 degrees, -1.0 = all directions)"
 
@@ -1793,7 +1793,7 @@
 	input DisableRotorSound(void) : "Turns off rotor sounds"
 	input StartBombingVehicle(void) : "Starts the chopper leading enemy vehicles and dropping bombs on them."
 	input StartTrailingVehicle(void) : "Starts the chopper trailing enemy vehicles and shooting at them."
-	input StartDefaultBehavior(void) : "Starts the chopper in the mode where he always stops at nav points instead of stopping anywhere in between nav points."
+	input StartDefaultBehavior(void) : "Starts the chopper in the mode where it always stops at nav points instead of stopping anywhere in between nav points."
 	input StartAlwaysLeadingVehicle(void) : "Starts the chopper *always* leading enemy vehicles (regardless of how they are moving w/respect to the path) and dropping bombs on them. This mode is different from StartBombingVehicle in that it never uses the machine gun."
 	input StartSprinkleBehavior(void) : "Starts the chopper dropping bombs randomly + shooting at the player."
 	input StartBullrushBehavior(void) : "Starts the chopper bullrushing the player."
@@ -1807,7 +1807,7 @@
 	input StartContinuousShooting(void) : "The chopper fires continuously."
 	input StartFastShooting(void) : "The chopper fires normal bursts, but does not 'charge up' the gun. Fires immediately."
 
-	input ResetIdleTime(void) : "Allows the helicopter to fire immediately if he's not in the middle of charging or firing"
+	input ResetIdleTime(void) : "Allows the helicopter to fire immediately if it's not in the middle of charging or firing"
 	input SetAngles(string) : "Instantly snaps the orientation of the helicopter (Pitch Yaw Roll)"
 	input DropBomb(void) : "Immediately drops a bomb based on normal bomb dropping rules"
 	input DropBombStraightDown(void) : "Immediately drops a bomb directly downwards"
@@ -1816,8 +1816,8 @@
 	input DropBombDelay(float) : "Add a delay before the next bomb is dropped"
 	input BecomeIndestructible(void) : "Makes the helicopter take no more damage"
 
-	input DisablePathVisibilityTests(void) : "When the helicopter moves, he will not check for visibility from the path_track to the enemy to cull out path_tracks"
-	input EnablePathVisibilityTests(void) : "When the helicopter moves, he will only move to path_tracks that have line-of-sight to the enemy"
+	input DisablePathVisibilityTests(void) : "When the helicopter moves, it will not check for visibility from the path_track to the enemy to cull out path_tracks"
+	input EnablePathVisibilityTests(void) : "When the helicopter moves, it will only move to path_tracks that have line-of-sight to the enemy"
 
 	input StartCarpetBombing(void) : "Starts the helicopter constantly dropping megabombs until StopCarpetBombing input"
 	input StopCarpetBombing(void) : "Stop the carpet bombing behavior"
@@ -2794,7 +2794,7 @@
 	goal(target_destination) : "Target Entity"
 	WaitPointName(target_destination) : "Point to wait at if the target's not visible"
 	WaitDistance(float) : "Wait until player gets this close"
-	LeadDistance(float) : "Lead Distance" : "64" : "The player is considered to be lagging if he's beyond this distance.  The Actor will consider retrieving when the player is 4x 'Lead Distance' away."
+	LeadDistance(float) : "Lead Distance" : "64" : "The player is considered to be lagging if they're beyond this distance.  The Actor will consider retrieving when the player is 4x 'Lead Distance' away."
 	RetrieveDistance(float) : "Retrieve Distance" : "96" : "The distance from the player that the NPC should return to when retrieving a lagging player. Must be between ('Lead Distance' + 24) and ('Lead Distance' * 4) to avoid the leader ping-ponging."
 	SuccessDistance(float) : "Success Distance" : "0" : "The distance from the player (to the NPC) that the player must be within for the Lead to succeed, once the NPC has reached the goal. If set to 0, it'll use the lead distance instead (for legacy support)."
 	Run(choices) : "Run instead of Walk" : "0" =
@@ -3280,7 +3280,7 @@
 
 @PointClass base(BaseActBusy) = ai_goal_actbusy_queue : "AI Goal Act Busy Queue"
 [
-	node_exit(target_destination) : "Exit Node" : "" : "The name of the node the first NPC in the queue should move to when he leaves the head of the queue."
+	node_exit(target_destination) : "Exit Node" : "" : "The name of the node the first NPC in the queue should move to when they leave the head of the queue."
 	node01(target_destination) : "Node 1" : "" : "The name of the first actbusy hint node in the queue."
 	node02(target_destination) : "Node 2" : "" : "The name of the second actbusy hint node in the queue."
 	node03(target_destination) : "Node 3" : "" : "The name of the third actbusy hint node in the queue."
