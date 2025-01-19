@@ -2840,8 +2840,8 @@
 	PostArrivalConceptModifier(string)	: "Post-arrival concepts modifier"
 	SuccessConceptModifier(string)		: "Success concept modifier" : "" : "Appended to the keyvalues passed into the response rules when the 'TLK_LEAD_SUCCESS' concept is spoken."
 	FailureConceptModifier(string)		: "Failure concept modifier" : "" : "Appended to the keyvalues passed into the response rules when the 'lead_fail' concept is spoken."
-	ComingBackConceptModifier(string)	: "Coming Back concept modifier" : "" : "Appended to the keyvalues passed into the response rules when the 'TLK_LEAD_RETRIEVE' concept is spoken. Spoken as the NPC starts returning to the player to retrieve him."
-	RetrieveConceptModifier(string)		: "Retrieve concept modifier" : "" : "Appended to the keyvalues passed into the response rules when the 'TLK_LEAD_COMINGBACK' concept is spoken. Spoken when NPC has finally reached the player to retrieve him."
+	ComingBackConceptModifier(string)	: "Coming Back concept modifier" : "" : "Appended to the keyvalues passed into the response rules when the 'TLK_LEAD_RETRIEVE' concept is spoken. Spoken as the NPC starts returning to the player to retrieve them."
+	RetrieveConceptModifier(string)		: "Retrieve concept modifier" : "" : "Appended to the keyvalues passed into the response rules when the 'TLK_LEAD_COMINGBACK' concept is spoken. Spoken when NPC has finally reached the player to retrieve them."
 	
 	// Spawnflags
 	spawnflags(Flags) = 
@@ -5298,7 +5298,7 @@
 ]
 
 @PointClass base(BaseVehicle) studioprop() = prop_vehicle :
-	"Studiomodel vehicle that can be driven via inputs."
+	"Vehicle that can be driven via inputs."
 [
 	// Inputs
 	input Steer(float) : "Steer the vehicle +/-1"
@@ -5459,7 +5459,7 @@
 ]
 
 @PointClass base(BaseDriveableVehicle) studioprop() = prop_vehicle_airboat :
-	"Driveable studiomodel airboat."
+	"Driveable airboat."
 [
 	model(studio) : "World model" : "models/airboat.mdl"
 	vehiclescript(string) : "Vehicle Script File" : "scripts/vehicles/airboat.txt"
@@ -5666,7 +5666,7 @@
 
 
 @PointClass base(BaseDriveableVehicle, Parentname) studioprop() = prop_vehicle_choreo_generic :
-	"Generic Choreo vehicle used for magical events."
+	"Generic Choreo vehicle used for scripted events."
 [
 	model(studio) : "World model" : "models/vehicles/prisoner_pod.mdl"
 	vehiclescript(string) : "Vehicle Script File" : "scripts/vehicles/choreo_vehicle.txt"
@@ -5676,7 +5676,7 @@
 	input EnterVehicle(void) : "Forces the activator (or player) into the vehicle."
 	input EnterVehicleImmediate(void) : "Forces the activator (or player) into the vehicle without enter/exit animations."
 	input ExitVehicle(void) : "Boots the prisoner out of the vehicle."
-	input Viewlock(bool) : "Set true to prevent Gordon from looking around *at all*. Set false to let him look within limits."
+	input Viewlock(bool) : "Set true to prevent player from looking around *at all*. Set false to let them look within limits."
 	input SetAnimation(string) : "Force the prop to play an animation. The parameter should be the name of the animation."
 	
 	output OnOpen(void) : "Fired when the vehicle is open enough to enter."

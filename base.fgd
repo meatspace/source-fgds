@@ -868,7 +868,7 @@
 	input StopPatrol(void) : "Stop patrolling back and forth along the track. This will cause the helicopter to come to rest at the track which it's currently flying toward."
 	input ChooseFarthestPathPoint(void) : "When tracking an enemy, choose the point on the path furthest from the enemy, but still in firing range."
 	input ChooseNearestPathPoint(void) : "When tracking an enemy, choose the point on the path nearest from the enemy."
-	input StartBreakableMovement(void) : "The helicopter is now allowed to disobey direct commands to go to particular points if it senses an enemy. It will move to the closest point (or farthest point, if ChooseFarthestPathPoint is used), on the path if he senses an enemy."
+	input StartBreakableMovement(void) : "The helicopter is now allowed to disobey direct commands to go to particular points if it senses an enemy. It will move to the closest point (or farthest point, if ChooseFarthestPathPoint is used), on the path if it senses an enemy."
 	input StopBreakableMovement(void) : "The helicopter can not disobey direct commands. It will continue to fly along it's patrol path or to its specified target even if it senses an enemy."
 
 	spawnflags(Flags) =
@@ -9047,7 +9047,7 @@
 	subject(target_destination) : "Subject(s)" : "" : "This is the NPC(s) whose speech we're filtering. May be a targetname or a classname."	
 
 	IdleModifier(float) : "Idle modifier." : "1.0" : "Multiplier to the percentage chance that our NPC(s) will idle speak. Set to 0 to prevent all idle speech."
-	NeverSayHello(choices) : "Greet Player?" : 0 : "If set to Yes, our NPC(s) won't greet the player when they first meet him." =
+	NeverSayHello(choices) : "Greet Player?" : 0 : "If set to Yes, our NPC(s) won't greet the player when they first meet them." =
 	[
 		0 : "Yes"
 		1 : "No"
@@ -9478,7 +9478,7 @@
 ]
 
 @PointClass base(Targetname, Parentname) size(-8 -8 -8, 8 8 8 ) = env_spritetrail : 
-	"A magical trail you can parent to anything you heart desires."
+	"A sprite trail you can parent to anything you heart desires."
 [
 	lifetime(float) : "Lifetime" : "0.5"
 	startwidth(float) : "Start Width" : "8.0"
