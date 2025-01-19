@@ -5284,7 +5284,24 @@
 	output OnTriggerParameter(string) : "Fired when the relay is triggered with a parameter."
 ]
 
-@PointClass base(Targetname) iconsprite("editor/logic_script.vmt") = logic_script : "An entity that acts as a container for scripts"
+@PointClass base(Targetname) iconsprite("editor/logic_script.vmt") 
+	line(200 200 200, targetname, group00) 
+	line(200 200 200, targetname, group01) 
+	line(200 200 200, targetname, group02) 
+	line(200 200 200, targetname, group03) 
+	line(200 200 200, targetname, group04) 
+	line(200 200 200, targetname, group05) 
+	line(200 200 200, targetname, group06) 
+	line(200 200 200, targetname, group07) 
+	line(200 200 200, targetname, group08) 
+	line(200 200 200, targetname, group09) 
+	line(200 200 200, targetname, group10) 
+	line(200 200 200, targetname, group11) 
+	line(200 200 200, targetname, group12) 
+	line(200 200 200, targetname, group13) 
+	line(200 200 200, targetname, group14)
+	line(200 200 200, targetname, group15)
+= logic_script : "An entity that acts as a container for scripts"
 [
 	Group00(target_destination) : "EntityGroup[0]"
 	Group01(target_destination) : "EntityGroup[1]"
@@ -7113,7 +7130,7 @@
 [
 ]
 
-@FilterClass base(BaseRedirectFilter) iconsprite("editor/filter_damage_transfer.vmt") = filter_damage_transfer :
+@FilterClass base(BaseRedirectFilter) line(255 255 255, targetname, target) iconsprite("editor/filter_damage_transfer.vmt") = filter_damage_transfer :
 	"Whenever an entity using this as a damage filter takes damage, that damage is transferred to another entity. The entity using this filter will not take the damage unless a secondary filter is specified and passed or caller damage is allowed. All damage information including force, type, attacker, etc. should be retained during the transfer and it obeys the target entity's own damage filters."
 [
 	target(target_destination) : "Transfer Target" : "" : "The name of the entity/entities that will receive the damage. Please note that this complies with their own damage filters."
@@ -9974,7 +9991,7 @@
 
 ]
 
-@PointClass base(Targetname,EnableDisable) = point_glow : "Mapbase off-shoot of tf_glow"
+@PointClass base(Targetname,EnableDisable) line(255 255 255, targetname, target) = point_glow : "Mapbase off-shoot of tf_glow"
 [
 	target(target_destination) : "Target" : : "One target only."
 	GlowColor(color255) : "Glow Color" : "255 0 0 255" : "<r> <g> <b> <a> 0-255"

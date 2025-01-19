@@ -5527,7 +5527,7 @@
 ]
 
 
-@PointClass base(BaseSpeaker) iconsprite("editor/ambient_generic.vmt") = env_speaker : "Announcement Speaker"
+@PointClass base(BaseSpeaker) iconsprite("editor/ambient_generic.vmt") line(255 255 255, targetname, target) = env_speaker : "Announcement Speaker"
 [
 ]
 
@@ -5586,7 +5586,7 @@
 	]
 ]
 
-@PointClass base(Targetname) iconsprite("editor/info_target.vmt") = info_player_view_proxy : "Copies a player's view as if they're at a different position. Intended to be used with script_intro."
+@PointClass base(Targetname) line(255 255 0, targetname, MeasureReference) line(255 255 0, targetname, TargetReference) iconsprite("editor/info_target.vmt") = info_player_view_proxy : "Copies a player's view as if they're at a different position. Intended to be used with script_intro."
 [
 	Enabled(choices) : "Start Activated" : 0 : "Starts with position offsetting enabled." =
 	[
