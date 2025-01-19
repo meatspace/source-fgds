@@ -2288,7 +2288,7 @@
 		1 : "[1] Emissive" : 0
 	]
 
-	InitialState(choices) : "Initial State" : 0 = 
+	InitialState(choices) : "Start Enabled" : 0 = 
 	[
 		0 : "Off"
 		1 : "On"
@@ -2306,10 +2306,10 @@
 	StartSize(integer) : "Particle start size" : 10 : "The initial size of the particles after they spawn."
 	EndSize(integer) : "Particle end size" : 25 : "The size of the particles at the point at which they are removed."
 	Rate(integer) : "Emission rate" : 26 : "The rate of particle emission. i.e. particles per second."
-	rendercolor(color255) : "Color (R G B)" : "255 255 255"
+	rendercolor(color255) : "Color (R G B)" : "60 65 68" : "Color of the steam. Only has an effect if the Emissive flag is on."
 	JetLength(integer) : "Length of steam jet" : 80 : "The length of the jet determines the lifetime of each particle."
 	renderamt(integer) : "Translucency" : 255
-	rollspeed(float) : "How fast does the particles spin" : 8
+	rollspeed(float) : "Spin Speed" : 8 : "How fast do the particles spin."
 	
 	// Inputs
 	input TurnOn(void) : "Turns the steam jet on."
