@@ -8107,7 +8107,7 @@
 		1: "Sharp"
 	]
 
-	nodamageforces(choices) : "Damaging it Doesn't Push It" : 0 : "Used to determine whether or not damage should cause the brush to move." =
+	nodamageforces(choices) : "Damaging it Doesn't Push It" : 0 : "Used to determine whether or not damage should cause the prop to move." =
 	[
 		0: "No"
 		1: "Yes"
