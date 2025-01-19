@@ -646,7 +646,7 @@
 	input HearBugbait(void) : "Hear bugbait"
 	input JumpAtTarget(target_destination) : "The antlion will attempt to jump through or at the target." //added by vizzys
 
-	output	OnReachedFightGoal(void) : "Fires when the antlion reaches his specified fight-to location"
+	output	OnReachedFightGoal(void) : "Fires when the antlion reaches its specified fight-to location"
 	output	OnUnBurrowed(void) : "Fires when the antlion unburrows"
 
 ]
@@ -1455,7 +1455,7 @@
 		1 : "Yes"
 	]
 
-	HealthRegenerateEnabled(choices) : "Regenerate Health" : 0 : "Whether or not the vortigaunt will recover his own health over time like vital allies, while in combat" =
+	HealthRegenerateEnabled(choices) : "Regenerate Health" : 0 : "Whether or not the vortigaunt will recover its own health over time like vital allies, while in combat" =
 	[
 		0 : "No"
 		1 : "Yes"
@@ -1466,8 +1466,8 @@
 	input DisableArmorRecharge(void) : "Do not allow armor recharging on players"
 	input ExtractBugbait(target_destination) : "Causes the vortigaunt to extract bugbait from the named target passed in."
 	input ChargeTarget(target_destination) : "Force the vortigaunt to charge the named target."
-	input EnableHealthRegeneration(void) : "Allow the vortigaunt to start regenerating his health over time, like vital allies."
-	input DisableHealthRegeneration(void) : "Stop the vortigaunt from regenerating his health. (Default behavior)"
+	input EnableHealthRegeneration(void) : "Allow the vortigaunt to start regenerating its health over time, like vital allies."
+	input DisableHealthRegeneration(void) : "Stop the vortigaunt from regenerating its health. (Default behavior)"
 	input TurnBlue(bool) : "If true, turn blue. If false, turn green. (Episodic)."
 	input TurnBlack(bool) : "If true, turn black. If false, be seen. (Episodic)."
 	input BeginCarryNPC(void) : "Begin to override our animations for 'carrying' an NPC. (Episodic)"
@@ -3275,7 +3275,7 @@
 
 	output OnNPCStartedLeavingBusy(ehandle) : "Fired right when an NPC targeted by this goal begins to stop acting busy, which would be right as they play their exit animation."
 	output OnNPCLostSeeEntity(void) : "Fired when the NPC loses sight of the see entity (if one is specified)."
-	output OnNPCSeeEnemy(void)  : "Fired when this NPC leaves his actbusy because of sighting an enemy."
+	output OnNPCSeeEnemy(void)  : "Fired when this NPC leaves their actbusy because of sighting an enemy."
 ]
 
 @PointClass base(BaseActBusy) = ai_goal_actbusy_queue : "AI Goal Act Busy Queue"
@@ -4187,18 +4187,18 @@
 		16 : "[16] Alternate master (Stop doing PVS check so it can be used by supply crates or become the master later on)" : 0
 	]
 
-	DesiredHealth(float) : "Desired Health Ratio" : "1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max health."
-	DesiredArmor(float) : "Desired Armor Ratio" : "0.3" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max armor."
-	DesiredAmmoPistol(float) : "Desired Pistol Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoSMG1(float) : "Desired SMG1 Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoSMG1_Grenade(float) : "Desired SMG1 Grenade Ammo Ratio" : "0.1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoAR2(float) : "Desired AR2 Ammo Ratio" : "0.4" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoBuckshot(float) : "Desired Shotgun Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoRPG_Round(float) : "Desired RPG Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoGrenade(float) : "Desired Grenade Ammo Ratio" : "0.1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmo357(float) : "Desired .357 Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoCrossbow(float) : "Desired Crossbow Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
-	DesiredAmmoAR2_AltFire(float) : "Desired AR2 Alt-fire Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of his max ammo carrying capacity."
+	DesiredHealth(float) : "Desired Health Ratio" : "1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max health."
+	DesiredArmor(float) : "Desired Armor Ratio" : "0.3" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max armor."
+	DesiredAmmoPistol(float) : "Desired Pistol Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoSMG1(float) : "Desired SMG1 Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoSMG1_Grenade(float) : "Desired SMG1 Grenade Ammo Ratio" : "0.1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoAR2(float) : "Desired AR2 Ammo Ratio" : "0.4" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoBuckshot(float) : "Desired Shotgun Ammo Ratio" : "0.5" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoRPG_Round(float) : "Desired RPG Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoGrenade(float) : "Desired Grenade Ammo Ratio" : "0.1" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmo357(float) : "Desired .357 Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoCrossbow(float) : "Desired Crossbow Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
+	DesiredAmmoAR2_AltFire(float) : "Desired AR2 Alt-fire Ammo Ratio" : "0" : "A ratio from 0 to 1. Attempt to fill the player up to this percentage of their max ammo carrying capacity."
 
 	// Inputs
 	input CalculateType(void) : "Force the dynamic resupply to calculate which item it should spawn."
@@ -4615,7 +4615,7 @@
 [
 	// Inputs
 	input Strip(void) : "Strip player's weapons"
-	input StripWeaponsAndSuit(void) : "Strip player's weapons and his suit"
+	input StripWeaponsAndSuit(void) : "Strip player's weapons and their suit"
 ]
 
 @PointClass base(Targetname) size(-16 -16 -16, 16 16 16) = player_speedmod: "Speeds up or slows down player velocity over time (slow mo/fast forward)"
