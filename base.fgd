@@ -614,7 +614,7 @@
 		2048 : "[2048] Template NPC (used by npc_maker, will not spawn; NOT used by point_template)" : 0
 		4096 : "[4096] Do alternate collision/player avoidance (largely obsolete, use Start/StopScripting)" : 0
 		8192 : "[8192] Don't drop weapons" : 0
-		16384 : "[16384] Ignore player push (don't give way to player)" : 0
+		16384 : "[16384] Ignore player push (Don't give way to player)" : 0
 	]
 
 	//initialidle(string) : "Initial Idle Activity" :: "Activity the NPC should use to idle until becomes alert"
@@ -869,7 +869,7 @@
 	input ChooseFarthestPathPoint(void) : "When tracking an enemy, choose the point on the path furthest from the enemy, but still in firing range."
 	input ChooseNearestPathPoint(void) : "When tracking an enemy, choose the point on the path nearest from the enemy."
 	input StartBreakableMovement(void) : "The helicopter is now allowed to disobey direct commands to go to particular points if it senses an enemy. It will move to the closest point (or farthest point, if ChooseFarthestPathPoint is used), on the path if it senses an enemy."
-	input StopBreakableMovement(void) : "The helicopter can not disobey direct commands. It will continue to fly along it's patrol path or to its specified target even if it senses an enemy."
+	input StopBreakableMovement(void) : "The helicopter can not disobey direct commands. It will continue to fly along it's patrol path or to it's specified target even if it senses an enemy."
 
 	spawnflags(Flags) =
 	[
@@ -1054,7 +1054,7 @@
 	[
 		1: "[1] Clients" : 1
 		2: "[2] NPCs" : 0
-		4: "[4] Pushables": 0
+		4: "[4] Pushables (Deprecated)": 0
 		8: "[8] Physics Objects" : 0
 		8192: "[8192] Items (weapons, items, projectiles)" : 0
 		16: "[16] Only player ally NPCs" : 0
@@ -2047,7 +2047,7 @@
 	input SetIgnoredEntity(target_destination) : "Sets the ignored entity."
 ]
 
-@PointClass base(Targetname, Parentname) color(200 50 0)  size(-8 -8 -8, 8 8 8) = env_smoketrail : 
+@PointClass base(Targetname, Parentname) sphere(spawnradius) color(200 50 0)  size(-8 -8 -8, 8 8 8) = env_smoketrail : 
 	"An entity that creates a smoke trail." 
 [
 	opacity(float) : "Sprite Opacity" : "0.75" : "Opacity of the sprites (range from 0 - 1)."
@@ -2691,7 +2691,7 @@
 	input ToggleSprite(void) : "Toggle the sprite between hidden and shown."
 ]
 
-@PointClass base(env_sprite, Angles) sphere(GlowProxySize) = env_sprite_oriented :
+@PointClass base(env_sprite, Angles) sphere(GlowProxySize) frustum( fov,near,far,rendercolor,-1 ) sprite() = env_sprite_oriented :
     "A env_sprite that allows orientation."
 [
 	framerate(string) : "Framerate" : "10.0" : "Rate at which the sprite should animate, if at all."
@@ -2715,6 +2715,11 @@
 	input HideSprite(void) : "Hide the sprite. Won't be drawn until the 'ShowSprite' input is received."
 	input ShowSprite(void) : "Show the sprite."
 	input ToggleSprite(void) : "Toggle the sprite between hidden and shown."
+	
+	fov(string) : "Helper - fov" : "100"	: "IGNORE. The 'Frustum' used to show where this sprite points need these lines" //added by vizzys, shows sprite direction in hammer
+	near(string) : "Helper - near" : "5"	: "IGNORE. The 'Frustum' used to show where this sprite points need these lines" //added by vizzys, shows sprite direction in hammer
+	far(string) : "Helper - far" : "8"	: "IGNORE. The 'Frustum' used to show where this sprite points need these lines" //added by vizzys, shows sprite direction in hammer
+	pitch_scale(string) :	"Helper - pitch_scale" : "1"	: "IGNORE. The 'Frustum' used to show where this sprite points need these lines" //added by vizzys, shows sprite direction in hammer
 ]
 
 
@@ -5075,7 +5080,7 @@
 	Branch16(target_destination) : "Logic Branch 16" : : "The name of one or more logic_branches (wildcards allowed)."
 
 	input Test(void) : "Tests the state of all the logic_branches in the list and fires the appropriate output."
-	input _OnLogicBranchRemoved(void) : "Sent automatically by a logic_branch when it gets removed for any reason. The !activator will no longer be watched by this entity. Makes the entity fire an output, but only if the listener's final result has changed." //added by vizzys
+	input _OnLogicBranchRemoved(void) : "Sent by a logic_branch when it gets removed for any reason. The !activator will no longer be watched by this entity. Makes the entity fire an output, but only if the listener's final result has changed." //added by vizzys
 	output OnAllTrue(void) : "Fired when all the logic_branches in the list become true."
 	output OnAllFalse(void) : "Fired when all the logic_branches in the list become false."
 	output OnMixed(void) : "Fired when one of the logic branches in the list changes, but some are true and some are false."
@@ -5175,7 +5180,7 @@
 	spawnflags(flags) =
 	[
 		1: "[1] Only trigger once" : 0
-		2: "[2] Allow fast retrigger (doesn't 'sleep' after triggering, ignores Trigger inputs while firing)" : 0
+		2: "[2] Allow fast retrigger (Doesn't 'sleep' after triggering, ignores Trigger inputs while firing)" : 0
 	]
 	OnTriggerChance1(float) : "OnTrigger1 Chance" : "1.0" : "Chance (from 0 to 1) of the OnTrigger1 output firing when this entity is triggered."
 	OnTriggerChance2(float) : "OnTrigger2 Chance" : "1.0" : "Chance (from 0 to 1) of the OnTrigger2 output firing when this entity is triggered."
@@ -5233,8 +5238,8 @@
 [
 	spawnflags(flags) =
 	[
-		1: "[1] Only trigger once (remove after OnSpawn or OnTrigger outputs fire)" : 0
-		2: "[2] Allow fast retrigger (doesn't 'sleep' after triggering, ignores Trigger inputs while firing)" : 0
+		1: "[1] Only trigger once (Remove after OnSpawn or OnTrigger outputs fire)" : 0
+		2: "[2] Allow fast retrigger (Doesn't 'sleep' after triggering, ignores Trigger inputs while firing)" : 0
 	]
 
 	// Inputs
@@ -6383,7 +6388,7 @@
 		128 : "[128] CLUB"
 		256 : "[256] SHOCK (+ stalker laser, tau cannon)"
 		512 : "[512] SONIC"
-		1024 : "[1024] ENERGYBEAM (beams, lasers)"
+		1024 : "[1024] ENERGYBEAM (+ lasers)"
 		4098 : "[4098] Func_tank, large flying NPCs" //added by vizzys
 		8194 : "[8194] Combine Autocannon" //added by vizzys
 		8197 : "[8197] Barnacle Eat" //added by vizzys
@@ -6408,7 +6413,7 @@
 	damagepresets(choices) : "Damage Presets" : 0 : "User-friendly 'presets' based on combined damage types. This is accompanied by the damage type and damage or, if they are specified." = 
 	[
 		0 : "None"
-		268435464 : "[268435464] Ignite, Passive Burning (BURN + DIRECT)"
+		268435464 : "[268435464] Ignite, Passive Burn (BURN + DIRECT)"
 		134217792 : "[134217792] All Blast Types (BLAST + BLAST_SURFACE)"
 	]
 	
@@ -6899,7 +6904,7 @@
 		128 : "[128] CLUB"
 		256 : "[256] SHOCK (+ stalker laser, tau cannon)"
 		512 : "[512] SONIC"
-		1024 : "[1024] ENERGYBEAM(beams, lasers)"
+		1024 : "[1024] ENERGYBEAM(+ lasers)"
 		4098 : "[4098] Func_tank, large flying NPCs" //added by vizzys
 		8194 : "[8194] Combine Autocannon" //added by vizzys
 		8197 : "[8197] Barnacle Eat" //added by vizzys
@@ -7515,7 +7520,7 @@
 	output OnPhysGunPunt(void) : "Fired when a player punts this object with the Gravity Gun."
 	output OnPhysGunPull(void) : "Fired when a player pulls this object with the Gravity Gun."
 	output OnPhysGunOnlyPickup(void) : "Fired when a player picks this object up with the Gravity Gun. +USE pickups do not fire this output."
-	output OnPhysGunDrop(void) : "Fired when a player drops this object."
+	output OnPhysGunDrop(void) : "Fired when a player drops this object with the Gravity Gun."
 	output OnPlayerUse(void) : "Fired when the player tries to +USE the physbox. This output will fire only if the Generate output on +USE spawnflag is set."
 ]
 
@@ -8104,7 +8109,7 @@
 	output OnOut(void) : "Fired whenever the prop completes its 'Out' animation."
 ]
 
-@BaseClass base(Targetname, Global, Angles, Studiomodel, BreakableProp, RenderFields, DXLevelChoice, BaseFadeProp) = BasePropPhysics
+@BaseClass base(Targetname, Global, Angles, Studiomodel, BreakableProp, RenderFields, DXLevelChoice, Parentname, BaseFadeProp) = BasePropPhysics
 [ 
 	spawnflags(flags) = 
 	[
@@ -8119,7 +8124,7 @@
 		1024: "[1024] Prevent motion enable on player bump" : 0
 		4096: "[4096] Debris with trigger interaction" : 0
 		8192: "[8192] Force server-side (Multiplayer only)" : 0
-		16384: "[16384] Radius pickup (easier to pickup)" : 0
+		16384: "[16384] Radius pickup (Easier to pickup)" : 0
 		1048576: "[1048576] Gravity Gun can ALWAYS pick up. No matter what." : 0
 		2097152: "[2097152] No collisions" : 0
 		8388608: "[8388608] Zombies can't swat" : 0
