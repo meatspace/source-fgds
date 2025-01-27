@@ -270,10 +270,10 @@
 		3: "Glow"
 		4: "Solid"
 		5: "Additive"
-		7: "Additive Fractional Frame (requires animated texture)"
+		7: "Additive Fractional Frame (must be animated)"
 		8: "Alpha Add"
 		9: "World Space Glow"
-		10: "Don't Render"
+		10: "Don't Render (Invisible)"
 	]
 	renderamt(integer) : "FX Amount (0 - 255)" : 255 : "The FX amount is used by the selected Render Mode."
 	rendercolor(color255) : "FX Color (R G B)" : "255 255 255" : "The FX color is used by the selected Render Mode."
@@ -1688,8 +1688,8 @@
 	]	
 	vrad_brush_cast_shadows(choices) : "Shadows" : 0 : "Set this if this brush casts lightmap shadows." =
 	[
-		0 : "No"
-		1 : "Yes"
+		0 : "No static shadow"
+		1 : "Yes, Cast static shadow"
 	]	
 	
 	input Alpha(integer) : "Sets the brush's alpha value."
@@ -2640,19 +2640,19 @@
 	"An entity used to create sparks at its origin." 
 [
 	MaxDelay(string) : "Max Delay" : "0" : "The longest delay between sparks (in seconds)."
-	Magnitude(choices) : "Magnitude" : 1 : "The size of the sparks." =
+	Magnitude(choices) : "Magnitude" : 1 : "The size of the sparks. Any number may be entered here." =
 	[
-		1 : "Small"
-		2 : "Medium"
-		5 : "Large"
-		8 : "Huge"
+		1 : "Small (1)"
+		2 : "Medium (2)"
+		5 : "Large (5)"
+		8 : "Huge (8)"
 	]
 
 	TrailLength(choices) : "Spark Trail Length" : 1 =
 	[
-		1 : "Short"
-		2 : "Medium"
-		3 : "Long"
+		1 : "Short (1)"
+		2 : "Medium (2)"
+		3 : "Long (3)"
 	]
 
 	spawnflags(flags) =
@@ -2681,6 +2681,20 @@
 	[
 		1: "[1] Start on" : 0
 		2: "[2] Play Once" : 0
+	]
+
+		rendermode(choices) : "Render Mode" : 9 : "Used to set a non-standard rendering mode on this entity. See also 'FX Amount' and 'FX Color'. Most of these are only used by sprites." =
+	[
+		0: "Normal"
+		1: "Color (May fix render order issues)"
+		2: "Texture"
+		3: "Glow"
+		4: "Solid"
+		5: "Additive"
+		7: "Additive Fractional Frame (must be animated)"
+		8: "Alpha Add"
+		9: "World Space Glow"
+		10: "Don't Render (Invisible)"
 	]
 
 	GlowProxySize(float) : "Size of Glow Proxy Geometry." : "2.0" : "Size of the glow to be rendered for visibility testing. Must be larger than the distance from the sprite center to empty space.  So if this glow is inside geometry (like a light bulb), set this value to be bigger than the bulb's radius. Any time a sphere of this radius would be visible (poking through any nearby geometry), the glow will be rendered."
@@ -3933,7 +3947,7 @@
 //-------------------------------------------------------------------------
 
 @PointClass base(Targetname, Angles) iconsprite("editor/shadow_control.vmt") = shadow_control : 
-	"An entity to control the shadows in the map."
+	"An entity to control the entity shadows in the map. Such as players, weapons and dynamic props."
 [
 	angles(angle) : "Pitch Yaw Roll (Y Z X)" : "80 30 0" : "This is the shadow direction. Pitch is rotation around the Y axis, yaw is the rotation around the Z axis, and roll is the rotation around the X axis."
 
@@ -4549,7 +4563,7 @@
 		8: "[8] Passable" : 0
 	    32: "[32] Toggle" : 0
 		256:"[256] Use Opens" : 0
-		512: "[512] NPCs Can't" : 0
+		512: "[512] NPCs Can't Open" : 0
 		1024: "[1024] Touch Opens" : 0
 		2048: "[2048] Starts locked" : 0
 		4096:	"[4096] Door Silent" : 0
@@ -4689,7 +4703,7 @@
 	spawnflags(flags) =
 	[
 		256 : "[256] Start with collision disabled" : 0
-		512: "[512] NPCs Can't" : 0
+		512: "[512] NPCs Can't Open" : 0
 		2048: "[2048] Starts locked" : 0
 		4096: "[4096] Door silent (No sound, does not alert NPCs)" : 0
 		8192: "[8192] Use closes" : 1
@@ -4877,7 +4891,7 @@
 
 
 // NEEDHELP
-@PointClass base( Targetname, Parentname, Angles ) size( -8 -8 -8, 8 8 8 ) = env_effectscript : 
+@PointClass base( Targetname, Parentname, Angles ) sphere(fademindist) sphere(fademaxdist) size( -8 -8 -8, 8 8 8 ) = env_effectscript : 
 	"An entity that allows you to script special visual effects via a script file."
 [
 	model(studio) : "Script Model" : "models/Effects/teleporttrail.mdl" : "Model to use for animation sequences."
@@ -5591,7 +5605,7 @@
 	input SetMinValueNoFire(float): "Set the lower bound of the counter without firing any outputs."
 
 	// Outputs
-	output OutValue(float) : "Fired when the counter value changes."
+	output OutValue(float) : "Fires whenever the stored number changes, except when caused by SetValueNoFire. Automatically puts the stored number as the input parameter, unless overridden by the mapper."
 	output OnHitMin(void) : "Fired when the counter value meets or goes below the min value. The counter must go back above the min value before the output will fire again."
 	output OnHitMax(void) : "Fired when the counter value meets or exceeds the max value. The counter must go below the max value before the output will fire again."
 	output OnGetValue(float) : "Fired in response to the GetValue input. Used for polling the counter when you don't want constant updates from the OutValue output."
@@ -7875,7 +7889,7 @@
 	input TurnOff(void) : "Turns motor off"
 ]
 
-@PointClass base(Targetname, Parentname, Angles, Studiomodel) studio() = phys_magnet : 
+@PointClass base(Targetname, Parentname, Angles, Studiomodel) sphere(fademindist) sphere(fademaxdist) studio() = phys_magnet : 
 	"An entity that acts like a magnet, attaching metallic physics objects to itself when they touch it."
 [
 	spawnflags(flags) =
