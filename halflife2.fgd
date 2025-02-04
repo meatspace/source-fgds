@@ -937,7 +937,7 @@
 	additionalequipment(choices) : "Weapons" : "0" =
 	[
 		"weapon_357" : ".357 Magnum (Revolver)"
-		"weapon_ar2" : "AR2"
+		"weapon_ar2" : "AR2 (Pulse Rifle)"
 		"weapon_citizenpackage" : "Citizen Package (Ration)"
 		"weapon_citizensuitcase" : "Citizen Suitcase"
 		"weapon_crossbow" : "Crossbow"
@@ -1015,7 +1015,7 @@
 
 	neverleaveplayersquad(choices) : "Permanent squad member?" : 0 : "A permanent squad member cannot leave the player's squad unless killed or explicitly removed by entity I/O. Only use this if you're sure you want to override the default AI." =
 	[
-		0 : "No. Default behavior. (Give up if cant get within 600 units of player &  LOS after 20 seconds of trying)"
+		0 : "No. Default behavior. (Give up if cant get within 600 units of player & LOS after 20 seconds of trying)"
 		1 : "Yes, stay in squad until death."
 	]
 
@@ -1098,7 +1098,7 @@
 		"weapon_smg1" : "SMG1"
 		"weapon_stunstick" : "Stun Stick"
 		"weapon_shotgun" : "Shotgun"
-		"weapon_ar2" : "AR2"
+		"weapon_ar2" : "AR2 (Pulse Rifle)"
 		"0" : "Nothing"
 	]
 
@@ -1114,7 +1114,7 @@
 	additionalequipment(choices) : "Weapons" : "weapon_smg1" =
 	[
 		"weapon_357" : ".357 Magnum (Revolver)"
-		"weapon_ar2" : "AR2"
+		"weapon_ar2" : "AR2 (Pulse Rifle)"
 		"weapon_citizenpackage" : "Citizen Package (Ration)"
 		"weapon_citizensuitcase" : "Citizen Suitcase"
 		"weapon_pistol" : "Pistol"
@@ -2071,7 +2071,7 @@
 	additionalequipment(choices) : "Weapons" : "weapon_pistol" =
 	[
 		"weapon_357" : ".357 Magnum (Revolver)"
-		"weapon_ar2"  : "AR2"
+		"weapon_ar2"  : "AR2 (Pulse Rifle)"
 		"weapon_citizenpackage" : "Citizen Package (Ration)"
 		"weapon_citizensuitcase" : "Citizen Suitcase"
 		"weapon_crowbar"  : "Crowbar"
@@ -2137,7 +2137,7 @@
 	[
 		"weapon_357" : ".357 Magnum (Revolver)"
 		"weapon_annabelle" : "Annabelle (Grigori's Shotgun)"
-		"weapon_ar2" : "AR2"
+		"weapon_ar2" : "AR2 (Pulse Rifle)"
 		"weapon_citizenpackage" : "Citizen Package (Ration)"
 		"weapon_citizensuitcase" : "Citizen Suitcase"
 		"weapon_crossbow" : "Crossbow"
@@ -2380,7 +2380,7 @@
 	[
 		"weapon_357" : ".357 Magnum (Revolver)"
 		"weapon_annabelle"	: "Annabelle (Grigori's Shotgun)"
-		"weapon_ar2" : "AR2"
+		"weapon_ar2" : "AR2 (Pulse RIfle)"
 		"weapon_citizenpackage" : "Citizen Package (Ration)"
 		"weapon_citizensuitcase" : "Citizen Suitcase"
 		"weapon_crossbow" : "Crossbow"
@@ -3000,7 +3000,7 @@
 
 	HintGroupChangeReaction(Choices) : "Reaction to tactical change" : 1 : "What to do if leader moves, threat is neutralized, hint group changes, etc" =
 	[
-		0 : "Move when ready (default AI)"
+		0 : "Move when ready (Default AI)"
 		1 : "Move when seek cover (Move when cover is needed)"
 		2 : "Move immediately (Move to a different position, if we want to, when change occurs)"
 	]
@@ -4422,17 +4422,17 @@
 @PointClass base(Weapon) studio("models/weapons/w_crowbar.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_crowbar : "Crowbar" []
 @PointClass base(Weapon) studio("models/weapons/w_stunbaton.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_stunstick : "StunStick" []
 @PointClass base(Weapon) studio("models/weapons/w_pistol.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_pistol : "Pistol" []
-@PointClass base(Weapon) studio("models/weapons/w_irifle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_ar2 : "Pulse Rifle" []
+@PointClass base(Weapon) studio("models/weapons/w_irifle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_ar2 : "AR2 (Pulse Rifle)" []
 @PointClass base(Weapon) studio("models/weapons/w_rocket_launcher.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_rpg : "RPG" []
 @PointClass base(Weapon) studio("models/weapons/w_smg1.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_smg1 : "SMG1" []
-@PointClass base(Weapon) studio("models/weapons/w_357.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_357 : ".357 Magnum" []
+@PointClass base(Weapon) studio("models/weapons/w_357.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_357 : ".357 Magnum (Revolver)" []
 @PointClass base(Weapon) studio("models/weapons/w_crossbow.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_crossbow : "Crossbow" []
 @PointClass base(Weapon) studio("models/weapons/w_shotgun.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_shotgun : "Shotgun" []
 @PointClass base(Weapon) studio("models/weapons/w_grenade.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_frag : "Frag Grenade" []
 @PointClass base(Weapon) studio("models/weapons/w_physics.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_physcannon : "Gravity Gun" []
 @PointClass base(Weapon) studio("models/weapons/w_bugbait.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_bugbait: "Bugbait" []
 @PointClass base(Weapon) studio("models/weapons/W_Alyx_Gun.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_alyxgun: "Alyx Gun" []
-@PointClass base(Weapon) studio("models/weapons/W_annabelle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_annabelle: "Annabelle (Grigori)" []
+@PointClass base(Weapon) studio("models/weapons/W_annabelle.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_annabelle: "Annabelle (Grigori's Shotgun)" []
 @PointClass base(Weapon) studio("models/weapons/w_slam.mdl") sphere(fademindist) sphere(fademaxdist) = weapon_slam: "SLAM tripmine from HL2:MP.\n\nCome on and slam, and welcome to the jam!\nCome on and slam, if you wanna jam!" []
 
 // TODO: Move to its own FGD? Needs to access Weapon base class somehow

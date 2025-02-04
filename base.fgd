@@ -2037,7 +2037,7 @@
 		2048: "[2048] Don't clamp Min" : 0
 		4096: "[4096] Don't clamp Max" : 0
 		8192: "[8192] Damage above water surface only" : 0
-		16384: "[16384] Generic damage (DMG_GENERIC damage)" : 0
+		16384: "[16384] Generic damage (Do DMG_GENERIC damage)" : 0
 	]
 
 	ignoredEntity(target_destination) : "Ignored Entity" : : "Do not harm or affect the named entity."
@@ -3231,7 +3231,7 @@
 	output Attack2Axis(string) : "An output that fires whenever the state of the player's secondary attack key changes. i.e. 1 when the player has the secondary attack key down, 0 otherwise."
 ]
 
-@PointClass base(Targetname)  line(0 128 0, targetname, referencename) = point_entity_finder :
+@PointClass base(Targetname) line(0 128 0, targetname, referencename) = point_entity_finder :
 	"An entity that will find an entity and pass it along as the !Caller with the OutEntity output.  Requires using !Caller as the parameter on the input."
 [
 	filtername(filterclass) : "Filter Name" : : "Filter to use to narrow set of findable entities. See filter_activator_name for more explanation."
@@ -7516,7 +7516,7 @@
 	damagetoenablemotion(integer) : "Health Level to Override Motion" : 0 : "If specified, this object will start motion disabled. Once its health has dropped below this specified amount, it will enable motion."
 	forcetoenablemotion(float) : "Physics Impact Force to Override Motion" : 0 : "If specified, this object will start motion disabled. Any impact that imparts a force greater than this value on the physbox will enable motion."
 	health(integer) : "Strength" : 0 : "Number of points of damage to take before breaking.  0 means don't break."
-	preferredcarryangles(vector) : "Preferred Player-carry Angles" : "0 0 0" : "If the 'Use Preferred Carry Angles' spawnflag is set, this angle is the angle which the object should orient to when the player picks it up, with Gravity Gun or +USE."
+	preferredcarryangles(vector) : "Preferred Player-carry Angles" : "0 0 0" : "If the 'Use Preferred Carry Angles' spawnflag is set, this angle is the angle which the object should orient to when the player picks it up, with the Gravity Gun or +USE."
 	notsolid(choices) : "Not solid to world" : 0 =
 	[
 		0: "Solid to World"
@@ -8228,7 +8228,7 @@
 		"12": "12 : Allow player to hold directly overhead"
 	]
 	
-	preferredcarryangles(angle) : "Preferred Player-carry Angles" : "0" : "The angle which the object should orient to when the player picks it up with Gravity Gun or +USE. Overrides the prop's own QC carry angles if it has any. '0' doesn't override the carry angles."
+	preferredcarryangles(angle) : "Preferred Player-carry Angles" : "0" : "The angle which the object should orient to when the player picks it up with the Gravity Gun or +USE. Overrides the prop's own QC carry angles if it has any. '0' doesn't override the carry angles."
 	
 	// Inputs
 	input Ignite(void) : "Ignite, burst into flames."
