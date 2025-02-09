@@ -170,7 +170,7 @@
 	ballcount(integer) : "Ball count" : 3 : "This is how many balls will be bouncing around inside the spawner"
 	minspeed(float) : "Min ball speed" : "300.0" : "The minimum speed of balls that fly in the spawner"
 	maxspeed(float) : "Max ball speed" : "600.0" : "The maximum speed of balls that fly in the spawner"
-	ballradius(float) : "Ball radius" : "20.0" : "The radius of the energy balls"
+	ballradius(float) : "Ball radius" : "12.0" : "The size of the sprite and the collision. This is restricted within 1-12 units."
 	balltype(choices) : "Ball Type" : "Combine Energy Ball 1" =
 	[
 		0 : "Combine Energy Ball 1"
@@ -271,10 +271,12 @@
 @NPCClass base(Targetname) studio("models/Weapons/w_grenade.mdl") = npc_grenade_frag : "Hand Grenade"
 [
 	input SetTimer(float) : "This input makes the grenade live, and specifies how many seconds before it explodes."
+	input Detonate(void) : "This input makes the grenade Detonate." //added by vizzys
+	output OnDetonate(void) : "Fires when the grenade Detonates." //added by vizzys
 ]
 
 
-@NPCClass base(BaseNPC) sphere(sightdist) studio("models/combine_soldier.mdl") = npc_combine_cannon : "Combine Cannon"
+@NPCClass base(BaseNPC) sphere(sightdist) studio("models/combine_soldier.mdl") = npc_combine_cannon : "Combine Autocannon"
 [
 	sightdist(float) : "Sight radius" : 1024 : "Radius distance at which the cannon is able to acquire enemies."
 ]
@@ -749,7 +751,6 @@
 		524288 :  "[524288] No melee insta-kill" : 0
 	]
 
-
 	input StartHangingFromCeiling(void) : "Start hanging from ceiling."
 	input DropFromCeiling(void) : "Drop if hanging from ceiling."
 	input Unburrow(void) : "Unburrow from the ground"
@@ -957,7 +958,7 @@
 		"Pistol" : "Pistol"
 		"SMG1" : "SMG1"
 		"SMG1_Grenade" : "SMG1 Grenade"
-		"AR2" : "AR2"
+		"AR2" : "AR2 (Pulse Rifle)"
 		"Buckshot" : "Shotgun"
 		"RPG_Round" : "RPG"
 		"Grenade" : "Grenade"
@@ -1129,7 +1130,7 @@
 	[
 		65536 :  "[65536] Start LookOff" : 0
 		131072	: "[131072] Don't drop grenades" : 0
-		262144  : "[262144] Don't drop ar2 alt fire (elite only) " : 0
+		262144  : "[262144] Don't drop AR2 alt fire (elite only) " : 0
 	]
 	
 	NumGrenades(choices) : "Number of Grenades" : "5" =
@@ -1769,7 +1770,7 @@
 		4194304 : "[4194304] Aim at enemies even when gun is off" : 0
 	]
 
-	InitialSpeed(string) : "Initial Speed" : "0"
+	InitialSpeed(float) : "Initial Speed" : "0"
 	GracePeriod(float) : "Grace Period" : "2.0" : "Time in seconds the helicopter has to see the player before it starts shooting"
 	PatrolSpeed(float) : "Patrol Speed" : "0" : "Speed at which the helicopter moves if it has no enemy."
 	
@@ -2174,7 +2175,7 @@
 		"weapon_shotgun" : "Shotgun"
 		"weapon_pistol" : "Pistol"
 		"weapon_smg1" : "SMG1"
-		"weapon_ar2" : "AR2"
+		"weapon_ar2" : "AR2 (Pulse Rifle)"
 		"0"  : "Nothing"
 	]
 
@@ -2184,7 +2185,7 @@
 		1 : "Yes"	
 	]
 
-	ShouldHaveEMP(choices) : "Should alyx have her EMP?" : "1" =
+	ShouldHaveEMP(choices) : "Should Alyx have her EMP?" : "1" =
 	[
 		0 : "No"
 		1 : "Yes"
@@ -2380,7 +2381,7 @@
 	[
 		"weapon_357" : ".357 Magnum (Revolver)"
 		"weapon_annabelle"	: "Annabelle (Grigori's Shotgun)"
-		"weapon_ar2" : "AR2 (Pulse RIfle)"
+		"weapon_ar2" : "AR2 (Pulse Rifle)"
 		"weapon_citizenpackage" : "Citizen Package (Ration)"
 		"weapon_citizensuitcase" : "Citizen Suitcase"
 		"weapon_crossbow" : "Crossbow"
@@ -3892,8 +3893,8 @@
 	effecthandling(choices) : "Effect Handling" : 0 : "Special effect handling that influences sound and muzzle effects. Individual settings can override parts of it." =
 	[
 		0 : "None"
-		1 : "AR2"
-		2 : "Combine Cannon"
+		1 : "AR2 (Pulse Rifle)"
+		2 : "Combine Autocannon"
 	]
 	
 	TraceFilter(filterclass) : "Trace Filter" : "" : "Entities that pass this filter will be ignored by this func_tank while it's aiming."
@@ -3977,7 +3978,7 @@
 		"" : "None"
 		"Pistol" : "Pistol"
 		"SMG1" : "SMG1"
-		"AR2" : "AR2"
+		"AR2" : "AR2 (Pulse Rifle)"
 		"CombineHeavyCannon" : "Combine Autocannon (Episodic only)"
 		"StriderMinigun" : "Strider Minigun"
 	]
@@ -4081,8 +4082,8 @@
 		"" : "None"
 		"Pistol" : "Pistol"
 		"SMG1" : "SMG1"
-		"AR2" : "AR2"
-		"CombineHeavyCannon" : "Combine Heavy Cannon"
+		"AR2" : "AR2 (Pulse Rifle)"
+		"CombineHeavyCannon" : "Combine Autocannon"
 	]
 	
 	ControllableVersion(choices) : "Controllable Version" : 0 : "Enables a tweaked version of func_tank_combine_cannon that is designed to be controlled by players and NPCs." =
@@ -4245,14 +4246,14 @@
 	[
 		0 : "Pistol"
 		1 : "SMG1"
-		2 : "AR2"
+		2 : "AR2 (Pulse Rifle)"
 		3 : "RPG Rounds"
 		4 : "Buckshot"
 		5 : "Grenades"
-		6 : "357 Magnum"
+		6 : ".357 Magnum (Revolver)"
 		7 : "Crossbow"
 		8 : "AR2 Alt-Fire Balls"
-		9 : "SMG Alt-Fire Grenades"
+		9 : "SMG1 Alt-Fire Grenades"
 		10 : "S.L.A.M."
 		11 : "Empty"
 	]
@@ -4644,8 +4645,6 @@
 	input SetAdditionalButtons(integer) : "Sets the additional suppressed buttons."
 ]
 
-
-
 //-------------------------------------------------------------------------
 //
 // Logic Entities
@@ -5029,7 +5028,7 @@
 		"ACHIEVEMENT_EVENT_HL2_GMAN_CATWALK"					: "[HL2] G-Man: canals_12 on catwalk"
 		"ACHIEVEMENT_EVENT_HL2_GMAN_DAM"					: "[HL2] G-Man: canals_13 to the left of the dam"
 		"ACHIEVEMENT_EVENT_HL2_GMAN_TRAINTRACKS"				: "[HL2] G-Man: town_05 at the end of the tracks"
-		"ACHIEVEMENT_EVENT_HL2_GMAN_ODESSA"					: "[HL2] G-Man: coast_03 odessa meeting"
+		"ACHIEVEMENT_EVENT_HL2_GMAN_ODESSA"					: "[HL2] G-Man: coast_03 Odessa meeting"
 		"ACHIEVEMENT_EVENT_HL2_GMAN_PRISONMONITOR"				: "[HL2] G-Man: prison_02 control room monitor"
 		"ACHIEVEMENT_EVENT_HL2_GMAN_FOYERTV"					: "[HL2] G-Man: c17_02 on TV in the destroyed foyer"
 		
@@ -5064,7 +5063,7 @@
 		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_RAILROADSHACK"		: "[HL2] Lamda: coast_07 fenced off area outside of town"
 		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_COASTABOVEBATTERY"		: "[HL2] Lamda: coast_09 above the bathroom in the battery puzzle building"
 		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_SANDSHACK"			: "[HL2] Lamda: coast_11 elevated shack after the board bridge"
-		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_GMANCACHE"			: "[HL2] Lamda: prison_02 in the boarded up area of the gman sighting"
+		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_GMANCACHE"			: "[HL2] Lamda: prison_02 in the boarded up area of the G-Man sighting"
 		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_CELLCACHE"			: "[HL2] Lamda: prison_03 in the prison cell"
 		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_POISONLAUNDRY"		: "[HL2] Lamda: prison_05 in the laundry utility room"
 		"ACHIEVEMENT_EVENT_HL2_LAMDACACHE_SODAMACHINE"			: "[HL2] Lamda: prison_06 on top of the soda machine"
@@ -5807,7 +5806,7 @@
 
 
 @PointClass base(BasePropPhysics) studioprop() sphere(fademindist) sphere(fademaxdist) studio("models/magnusson_device.mdl") = weapon_striderbuster :
-	"Strider Buster"
+	"Strider Buster aka Magnusson Device"
 [
 	spawnflags(Flags) = 
 	[
