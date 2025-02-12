@@ -789,6 +789,7 @@
 	MaxNPCCount(integer) : "Num. of NPCs" : 1 : "Number of NPCs that will spawn before this spawner is exhausted."
 	SpawnFrequency(string) : "Frequency" : "5" : "How often (in seconds) a new NPC will be spawned. If set to -1, a new NPC will be made when the last NPC dies."
 	MaxLiveChildren(integer) : "Max Live NPCs" : 5 : "Maximum number of live children allowed at any one time (new ones will not be made until one dies). If set to -1, no limit is applied."
+	ignoreentity(target_destination) : "Entity To Ignore" : : "If set, an entity to ignore when checking if there's room to spawn." //added by vizzys
 	
 	// Outputs
 	output OnSpawnNPC(ehandle) : "Fired when an NPC is spawned. The activator is the NPC, and the parameter is a pointer to the NPC." 
@@ -864,6 +865,8 @@
 	input SetTrack(target_destination) : "Set a track for the helicopter to adhere to. The helicopter will do nothing if it's on the same path, and will move to the closest point on the specified track if it's on a different path."
 	input FlyToSpecificTrackViaPath(target_destination) : "The helicopter will first fly to the closest point on the path if it's on a different path. Then it'll fly along the path to the specified track point."
 	input FlyToPathTrack(target_destination) : "The helicopter will fly to the given path_track." //added by vizzys
+	input InputStartLeading(integer) : "Starts leading enemy vehicles with the specified distance."  //added by vizzys
+	input InputStopLeading(void) : "Stops leading enemy vehicles."  //added by vizzys
 	input StartPatrol(void) : "Start patrolling back and forth along the current track."
 	input StopPatrol(void) : "Stop patrolling back and forth along the track. This will cause the helicopter to come to rest at the track which it's currently flying toward."
 	input ChooseFarthestPathPoint(void) : "When tracking an enemy, choose the point on the path furthest from the enemy, but still in firing range."
@@ -1796,7 +1799,7 @@
 //-------------------------------------------------------------------------
 
 @PointClass base(Targetname, Parentname, Angles, RenderFxChoices, RenderFields) studio() = cycler : 
-	"An entity used to display a model for testing purposes. Shooting it with cycle through the model's animations."
+	"An entity used to display a model for testing purposes. Shooting it will cycle through the model's animations."
 [
 	spawnflags(flags) =
 	[
@@ -1827,7 +1830,7 @@
 	m_flVelocity(integer) : "Gib Velocity" : 200 : "Speed of the fired gibs"
 	m_flVariance(string) : "Course Variance" : "0.15" : "How much variance in the direction gibs are fired."
 	m_flGibLife(string) : "Gib Life" : "4" : "Time in seconds for gibs to live +/- 5%"
-	lightingorigin(target_destination) : "Lighting Origin" : "" : "Select an info_lighting to specify a location to sample lighting from for all gibs spawned by this shooter, instead of their own origins."
+	lightingorigin(target_destination) : "Lighting Origin" : "" : "Select an info_lighting to specify a location to sample lighting from for all gibs spawned by this shooter, instead of their own origins."																		 
 
 	spawnflags(Flags) = 
 	[
@@ -1844,7 +1847,7 @@
 	renderamt(integer) : "Brightness (1 - 255)" : 100
 	rendercolor(color255) : "Beam Color (R G B)" : "255 255 255"
 	Radius(integer) : "Radius" : 256 : "If the 'Random Strike' spawnflag is set, this radius determines the area within which the endpoints will randomly strike."
-	life(string) : "Life (seconds 0 = infinite)" : "1" : "Amount of time before the beam dies. Setting to zero will make the beam stay forever."
+	life(float) : "Life (seconds 0 = infinite)" : "1" : "Amount of time before the beam dies. Setting to zero will make the beam stay forever."
 	BoltWidth(float) : "Width of beam" : 2 : "Pixel width of the beam."
 	NoiseAmplitude(float) : "Amount of noise (0-255)" : 0 : "The amount of noise in the beam. 0 is a perfectly straight beam."
 	texture(sprite) : "Sprite Name" : "sprites/laserbeam.vmt" : "The material used to draw the beam."
@@ -2217,7 +2220,7 @@
 	output OnHeatLevelEnd(void) : "Fires when the heat level drops below the target level."
 ]
 
-@PointClass base(Targetname) size(-4 -4 -4, 4 4 4) color(0 180 0) = env_entity_igniter : 
+@PointClass base(Targetname) size(-4 -4 -4, 4 4 4) color(0 180 0) line(255 128 0, targetname, target) = env_entity_igniter : 
 	"An entity that catches a target entity on fire. If the entity is an animating model, it will have sprite flames attached to its skeleton. Otherwise the entity will emit particle flame puffs."
 [
 	target(target_destination) : "Entity to ignite" : : "Name of the entity to catch on fire."
@@ -2497,7 +2500,6 @@
 	]
 
 	gibgravityscale(float) : "Gib gravity scale" : "1" : "ONLY WORKS FOR POINT GIBS. This field allows you to scale gravity so that gibs fall faster, slower, or not at all."
-	
 	massoverride(float) : "Mass override" : "0" : "EPISODIC ONLY. Specify an arbitrary mass for the gibs emitted by me."
 ]
 
@@ -2595,7 +2597,7 @@
 	
 	// Inputs
 	input Enable(void) : "Enable the soundscape."
-	input Disabled(void) : "Disable the soundscape."
+	input Disable(void) : "Disable the soundscape."
 	input ToggleEnabled(void) : "Toggle the soundscape enabled state."
 	// Outputs
 	output OnPlay(void) : "Fired when this soundscape becomes the active one."
@@ -2624,7 +2626,7 @@
 
 	// Inputs
 	input Enable(void) : "Enable the soundscape."
-	input Disabled(void) : "Disable the soundscape."
+	input Disable(void) : "Disable the soundscape."
 	input ToggleEnabled(void) : "Toggle the soundscape enabled state."
 
 	// Outputs
@@ -3103,7 +3105,6 @@
 	rendercolor(color255) : "Color (R G B)" : "255 255 255"
 	HDRColorScale(float) : "HDR color scale." : "1.0" : "float value to multiply sprite color by when running in HDR mode."
 	HaloScale(float) : "Halo size scale." : "60" : "float value to determine the size of the halo."
-	
 	HaloMaterial(sprite) : "Halo material" : "sprites/light_glow03.vmt" : "Material to use for the halo."
 	SpotlightMaterial(sprite) : "Spotlight beam material" : "sprites/glow_test02.vmt" : "Material to use for the spotlight's beam."
 	
@@ -4068,8 +4069,8 @@
 	speed(integer) : "Speed" : 100 : "The speed that the brush moves, in units per second."
 	movedistance(float) : "Move Distance" : 100 : "The distance from the starting point that the brush should move, in units."
 	blockdamage(float) : "Block Damage" : 0 : "The amount of damage to do to any entity that blocks the brushes, per frame."
-	startsound(sound) : "Sound played when the brush starts moving."
-	stopsound(sound) : "Sound played when the brush stops moving."
+	startsound(sound) : "Start Sound" : : "Sound played when the brush starts moving."
+	stopsound(sound) : "Stop Sound" : : "Sound played when the brush stops moving."
 
 	// Inputs
 	input Open(void) : "Move the brush to the end position (starting position + (move direction * move distance))."
@@ -4174,17 +4175,18 @@
 [
 ]
 
-@MoveClass base(Targetname, Parentname, Mover, KeyFrame) size(-8 -8 -8, 8 8 8) color(255 0 0) animator() = move_track : 
-	"Track Move Behavior"
-[
-	WheelBaseLength(integer) : "Distance between the wheels" : 50
-	Damage(integer) : "Damage done to blocking entities" : 0
-	NoRotate(choices) : "Turn to face down path" : 0 =
-	[
-		0 : "Yes"
-		1 : "No"
-	]
-]
+// disabled this because it literally does not exist -vizzys
+//@MoveClass base(Targetname, Parentname, Mover, KeyFrame) size(-8 -8 -8, 8 8 8) color(255 0 0) animator() = move_track : 
+//	"Track Move Behavior"
+//[
+//	WheelBaseLength(integer) : "Distance between the wheels" : 50
+//	Damage(integer) : "Damage done to blocking entities" : 0
+//	NoRotate(choices) : "Turn to face down path" : 0 =
+//	[
+//		0 : "Yes"
+//		1 : "No"
+//	]
+//]
 
 //-------------------------------------------------------------------------
 //
@@ -4217,7 +4219,7 @@
 	
 	Width(float) : "Width" : "2" : "Width of the rope."
 
-	TextureScale(string) : "Texture Scale" : "1" : "This changes the texture resolution. The default resolution is 4 pixels per inch. Larger values stretch the texture and smaller values scrunch it up."
+	TextureScale(float) : "Texture Scale" : "1" : "This changes the texture resolution. The default resolution is 4 pixels per inch. Larger values stretch the texture and smaller values scrunch it up."
 	
 	Collide(choices) : "Collide with world" : 0 =
 	[
@@ -4809,9 +4811,9 @@
 
 	Color(color255) : "Particle Color (R G B)" : "255 255 255"
 	SpawnRate(integer) : "Particle Per Second" : 40 : "Number of particles to spawn, per second."
-	SpeedMax(string) : "Maximum Particle Speed" : 13 : "Maximum speed that the particles can move after spawning."
-	LifetimeMin(string) : "Minimum Particle Lifetime" : 3 : "Minimum number of seconds until each particle dies. Particles live for a random duration between this and 'Maximum Particle Lifetime'."
-	LifetimeMax(string) : "Maximum Particle Lifetime" : 5 : "Maximum number of seconds until each particle dies. Particles live for a random duration between 'Minimum Particle Lifetime' and this."
+	SpeedMax(integer) : "Maximum Particle Speed" : 13 : "Maximum speed that the particles can move after spawning."
+	LifetimeMin(integer) : "Minimum Particle Lifetime" : 3 : "Minimum number of seconds until each particle dies. Particles live for a random duration between this and 'Maximum Particle Lifetime'."
+	LifetimeMax(integer) : "Maximum Particle Lifetime" : 5 : "Maximum number of seconds until each particle dies. Particles live for a random duration between 'Minimum Particle Lifetime' and this."
 	DistMax(integer) : "Maximum Visible Distance" : 1024 : "Maximum distance at which particles are visible. They fade to translucent at this distance."
 
 	Frozen(choices) : "Frozen" : 0 : "When set, this entity spawns the number of particles in SpawnRate immediately, and then goes inactive." =
@@ -4972,9 +4974,9 @@
 		256:"[256] Allow fixed behavior (can move without look target, removal stops softlock, etc.)" : 1
 	]
 	
-	speed(string) : "Initial Speed" : "0" : "The starting speed that the camera moves at, if it's on a path track."
-	acceleration(string) : "Acceleration units/sec^2" : "500" : "The speed at which the camera accelerates to path corner's desired speeds."
-	deceleration(string) : "Stop Deceleration units/sec^2" : "500" : "The speed at which the camera decelerates to path corner's desired speeds."
+	speed(float) : "Initial Speed" : "0" : "The starting speed that the camera moves at, if it's on a path track."
+	acceleration(float) : "Acceleration units/sec^2" : "500" : "The speed at which the camera accelerates to path corner's desired speeds."
+	deceleration(float) : "Stop Deceleration units/sec^2" : "500" : "The speed at which the camera decelerates to path corner's desired speeds."
 	
 	fov(float) : "FOV" : "75" : "The player's FOV when using this camera. Be sure to have the 'Set FOV' spawnflag enabled if you want to use this."
 	fov_rate(float) : "FOV rate" : "0" : "How quickly the FOV should be set. Be sure to have the 'Set FOV' spawnflag enabled if you want to use this."
@@ -5007,7 +5009,7 @@
 		1 : "Yes"
 	]
 	CycleFrequency(float) : "Cycle Frequency" : "0.0" : "Base cycles per second from -10.0 to 10.0."
-	FModulationType(choices) : "Frequency Modulation Type" : 0 = 
+	FModType(choices) : "Frequency Modulation Type" : 0 = 
 	[
 		0: "None"
 		1: "Sine"
@@ -5383,8 +5385,8 @@
 		1 : "Yes"
 	]
 	
-	LowerRandomBound(string) : "Minimum Random Interval" : : "If 'Use Random Time' is set, this is the minimum time between timer fires. The time will be a random number between this and the 'Maximum Random Interval'."
-	UpperRandomBound(string) : "Maximum Random Interval" : : "If 'Use Random Time' is set, this is the maximum time between timer fires. The time will be a random number between the 'Minimum Random Interval' and this."
+	LowerRandomBound(float) : "Minimum Random Interval" : : "If 'Use Random Time' is set, this is the minimum time between timer fires. The time will be a random number between this and the 'Maximum Random Interval'."
+	UpperRandomBound(float) : "Maximum Random Interval" : : "If 'Use Random Time' is set, this is the maximum time between timer fires. The time will be a random number between the 'Minimum Random Interval' and this."
 	RefireTime(string) : "Refire Interval" : : "If 'Use Random Time' isn't set, this is the time between timer fires, in seconds."
 	
 	UseBoundsForTimerInputs(choices) : "Limit Timer Inputs" : 0 : "Allows the Minimum/Maximum Random Interval keyvalues to limit the total timer value when it receives AddToTimer or SubtractFromTimer inputs." =
@@ -5455,7 +5457,7 @@
 ]
 
 
-@PointClass base(Targetname, Parentname, EnableDisable) iconsprite("editor/env_microphone.vmt") sphere(MaxRange) color(0 0 255) = env_microphone :
+@PointClass base(Targetname, Parentname, EnableDisable) iconsprite("editor/env_microphone.vmt") sphere(MaxRange) color(0 0 255) line(255 255 0, targetname, target, targetname, SpeakerName) = env_microphone :
 	"An entity that acts as a microphone. It works in one of two modes. If it has a 'Speaker' set, it picks up all sounds within the specified sound range, " +
 	"and rebroadcasts them through the Speaker entity. In this Speaker mode, it ignores the Hears X spawnflags and does not fire the SoundLevel output. " +
 	"If it has no Speaker set, it measures the sound level at a point, and outputs the sound level as a value between 0 and 1. In Measuring mode, it only hears sounds that match the Hear X spawnflags."
@@ -5668,7 +5670,7 @@
 	output Line(vector) : "Fired when the vector, from the start entity to the end entity, changes. Passes along the vector as a parameter."
 ]
 
-@PointClass base(Targetname) size(-8 -8 -8, 8 8 8) = logic_navigation : 
+@PointClass base(Targetname) size(-8 -8 -8, 8 8 8) line(128 128 128, targetname, target) = logic_navigation : 
 	"An entity that is used to set navigation properties on other entities. Useful to make NPCs ignore physics props in their way that they can easily push." 
 [
 	target(target_destination) : "Navigation Entity" : : "Name of the entity to set navigation properties on."
@@ -7595,6 +7597,7 @@
 	// Inputs
 	input TurnOn(void) : "Enable the controller."
 	input TurnOff(void) : "Disable the controller." 
+	input SetAngularLimit(float) : "Change the angular limit." // added by vizzys
 ]
 
 @PointClass base(Targetname, Angles, Studiomodel) sphere(expradius) studioprop() = physics_cannister : 
@@ -7635,7 +7638,7 @@
 	massScale(float) : "Amount to scale the mass of this body in the constraint solver" : "1"
 ]
 
-@PointClass size(-4 -4 -4, 4 4 4) = info_mass_center :
+@PointClass size(-4 -4 -4, 4 4 4) line(128 128 128, targetname, target) = info_mass_center :
 	"An entity that overrides the mass center of the target physics prop, or func_physbox, by moving it to the info_mass_center's location."
 [
 	target(target_destination) : "Target object" : ""  : "The entity whose mass center will be overridden."
@@ -7870,6 +7873,7 @@
 	spinup(string) : "Spin up time" : "1" : "spin up time in seconds (also affects the rate at which speed changes happen)"
 	inertiafactor(float) : "System Inertia Scale" : "1.0" : "Make this larger if the object being driven is constrained to a set of heavier objects."
 	axis(vecline) : "Rotation Axis" : ""
+	addangaccel(float) : "Additional Angular Acceleration" : "0.0" : "Increase this if you want the object to have more acceleration." //added by vizzys
 
 	spawnflags(flags) =
 	[
@@ -8132,7 +8136,7 @@
 	output OnOut(void) : "Fired whenever the prop completes its 'Out' animation."
 ]
 
-@BaseClass base(Targetname, Global, Angles, Studiomodel, BreakableProp, RenderFields, DXLevelChoice, Parentname, BaseFadeProp) = BasePropPhysics
+@BaseClass base(Targetname, Global, Angles, Studiomodel, BreakableProp, RenderFields, DXLevelChoice, Parentname, BaseFadeProp, DamageFilter) = BasePropPhysics
 [ 
 	spawnflags(flags) = 
 	[
@@ -8732,7 +8736,7 @@
 	output OnDeath(void) : "Fired when the tank is killed."
 ]
 
-@SolidClass base(Parentname,Global) = func_traincontrols :
+@SolidClass base(Parentname,Global) line(255 255 255, targetname, target) = func_traincontrols :
 	"When used by the player, this entity overrides the player's controls to let them drive a train."
 [
 	target(target_destination) : "Train Name" : : "The target train to control when the player uses these controls."
@@ -8923,7 +8927,7 @@
 @SolidClass base(Trigger) = trigger_multiple :
 	"A trigger volume that can be triggered multiple times."
 [
-	wait(integer) : "Delay Before Reset" : 1 : "Amount of time, in seconds, after the trigger_multiple has triggered before it can be triggered again. If set to -1, it will never trigger again (in which case you should just use a trigger_once)."
+	wait(float) : "Delay Before Reset" : 1 : "Amount of time, in seconds, after the trigger_multiple has triggered before it can be triggered again. If set to -1, it will never trigger again (in which case you should just use a trigger_once)."
 
 	// Touch test stuff is now on all trigger entities.
 	 
@@ -9385,7 +9389,7 @@
 	input RollCredits(void) : "Start the intro credits rolling."
 	input RollOutroCredits(void) : "Start the outro credits rolling."
 	input ShowLogo(void) : "Show the HL2 logo."
-	
+	input SetLogoLength(float) : "Sets the amount of time the logo is displayed. Default is 5.0." //added by vizzys
 	// Outputs
 	output OnCreditsDone(void)  : "Fired when the credits having finished rolling."
 ]
@@ -9394,8 +9398,8 @@
 	"An entity that can be used to directly control material vars. To use it, you need to read the .vmt of the material you "+
 	"intend to change. Parent this entity to a brush model entity who's material you want to control."
 [
-	materialName(string) : "Material to modify."
-	materialVar(string) : "Material variable to modify."
+	materialName(string) : "The single material to modify on the parent. 'materials/' and '.vmt' is not required. Maximum of 255 characters allowed."
+	materialVar(string) : "Material variable to modify, '$frame' for example. Maximum of 255 characters allowed."
 
 	// Inputs
 	input SetMaterialVar(string) : "Fire to modify a material variable. The argument is the value to set the variable to."
