@@ -5343,7 +5343,7 @@
 [
 ]
 
-@PointClass base(Targetname, Angles) studio() = point_apc_controller : "APC Controller"
+@PointClass base(Targetname, Angles) studio() line(255 255 255, targetname, targetentityname) = point_apc_controller : "APC Controller"
 [
 	spawnflags(flags) =
 	[
